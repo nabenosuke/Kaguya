@@ -6,7 +6,8 @@ public class GManager : MonoBehaviour
 {
     public static GManager instance = null;
     [Header("スタート地点")] public Vector3 startPos = Vector3.zero;
-    [Header("プレイヤーネーム")] public string playerName = "NICO";
+    [Header("キャラクターID")] public int characterID = 7;
+    [Header("キャラクターネーム")] public string characterName = "NICO";
     [Header("現在のステージ")] public int stageNum;
     [Header("現在の残機")] public int continueNum;
     [Header("現在のHP")] public int playerHP;
@@ -21,6 +22,8 @@ public class GManager : MonoBehaviour
     private AudioSource audioSource = null;
     //このステージが一度初期化されたか
     [SerializeField] private bool[] isStageInitialize;
+    private string[] characterNameList = new string[] { "HONOKA", "KOTORI", "UMI", "RIN", "HANAYO", "MAKI", "NIKO", "NOZOMI", "ELI" };
+
     private void Awake()
     {
         //Cursor.lockState = CursorLockMode.Locked;
@@ -92,6 +95,19 @@ public class GManager : MonoBehaviour
             {
                 Debug.Log("オーディオソースが設定されていません");
             }
+        }
+    }
+
+    public void SetCharacterID(int charaID)
+    {
+        characterID = charaID;
+        if (charaID <= characterNameList.Length || characterID > 0)
+        {
+            characterName = characterNameList[charaID - 1];
+        }
+        else
+        {
+            Debug.Log("キャラクターIDが不正です");
         }
     }
 }

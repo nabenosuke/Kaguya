@@ -77,6 +77,7 @@ public class CharacterSelect : MonoBehaviour, ISubMenu
     public void Selected()
     {
         Debug.Log("決定");
+        GManager.instance.SetCharacterID(characterID);
         animator.SetFloat("AnimSpeed", 1.0f);
         gameStart.GetComponent<GameStart>().StartGame();
         selectable.enabled = false;
