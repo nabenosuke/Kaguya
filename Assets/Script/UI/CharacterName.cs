@@ -14,7 +14,7 @@ public class CharacterName : MonoBehaviour
         playerText = GetComponent<Text>();
         if (GManager.instance != null)
         {
-            playerText.text = " " + GManager.instance.characterName;
+            SetName();
         }
         else
         {
@@ -28,8 +28,13 @@ public class CharacterName : MonoBehaviour
     {
         if (oldName != GManager.instance.characterName)
         {
-            playerText.text = GManager.instance.characterName;
-            oldName = GManager.instance.characterName;
+            SetName();
         }
+    }
+
+    void SetName()
+    {
+        playerText.text = GManager.instance.characterName;
+        oldName = GManager.instance.characterName;
     }
 }
