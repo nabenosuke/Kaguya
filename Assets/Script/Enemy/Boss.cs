@@ -4,113 +4,112 @@ using UnityEngine;
 
 public class Boss : MonoBehaviour
 {
-  public GameObject[] bossPositions;
-  public float speed = 3;
+    //ランダムで指定したポジションへ移動。その後ランダムな攻撃をボスキャラに呼び出させる。攻撃が終わったら移動させられる
+    public GameObject[] bossPositions;
+    public float speed = 3;
 
-  private enum BossState
-  {
-    StartEnsyutu,
-    Battle,
-    ClearEnsyutu,
-  }
-  private enum BossAct
-  {
-    Move,
-    Atatck,
-  }
-
-  private IBoss iBoss;
-  private BossState nowState = BossState.StartEnsyutu;
-  private BossAct bossAct = BossAct.Move;
-  private Rigidbody2D rb;
-  private Vector2 nextPosition;
-  private int bossActNum = 0;
-  private int bossActVol = 1;
-  private int bossPosNum = 0;
-  private int bossPosVol = 4;
-  // Start is called before the first frame update
-  void Start()
-  {
-    bossPosVol = bossPositions.Length;
-    nextPosition = bossPositions[bossPosNum].transform.position;
-    rb = GetComponent<Rigidbody2D>();
-    iBoss = GetComponent<IBoss>();
-  }
-
-  // Update is called once per frame
-  void Update()
-  {
-    if (transform.position.x > 0)
+    private enum BossState
     {
-      transform.localScale = new Vector3(1, 1, 1);
+        StartEnsyutu,
+        Battle,
+        ClearEnsyutu,
     }
-    else
+    private enum BossAct
     {
-      transform.localScale = new Vector3(-1, 1, 1);
+        Move,
+        Atatck,
     }
 
-    switch (nowState)
+    private IBoss iBoss;
+    private BossState nowState = BossState.StartEnsyutu;
+    private BossAct bossAct = BossAct.Move;
+    private Rigidbody2D rb;
+    private Vector2 nextPosition;
+    private int bossActNum = 0;
+    private int bossActVol = 2;
+    private int bossPosNum = 0;
+    private int bossPosVol = 4;
+    private bool isAttck = false;
+    // Start is called before the first frame update
+    void Start()
     {
-      case BossState.StartEnsyutu:
-        nowState = BossState.Battle;
-        //登場演出時の処理を書く
-        break;
-      case BossState.Battle:
-        switch (bossAct)
+        bossPosVol = bossPositions.Length;
+        nextPosition = bossPositions[bossPosNum].transform.position;
+        rb = GetComponent<Rigidbody2D>();
+        iBoss = GetComponent<IBoss>();
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        if (transform.position.x > 0)
         {
-          case BossAct.Move:
-            Move();
-            break;
-
-          case BossAct.Atatck:
-            Attack();
-            break;
+            transform.localScale = new Vector3(1, 1, 1);
         }
-        break;
-      case BossState.ClearEnsyutu:
-        //クリア時の処理を書く
-        break;
-    }
-  }
+        else
+        {
+            transform.localScale = new Vector3(-1, 1, 1);
+        }
 
-  private void Move()
-  {
-    if (Vector2.Distance(transform.position, nextPosition) > 0.1f)
+        switch (nowState)
+        {
+            case BossState.StartEnsyutu:
+                nowState = BossState.Battle;
+                //登場演出時の処理を書く
+                break;
+            case BossState.Battle:
+                switch (bossAct)
+                {
+                    case BossAct.Move:
+                        Move();
+                        break;
+
+                    case BossAct.Atatck:
+                        Attack();
+                        break;
+                }
+                break;
+            case BossState.ClearEnsyutu:
+                //クリア時の処理を書く
+                break;
+        }
+    }
+
+    private void Move()
     {
-      //現在地から次のポイントへのベクトルを作成
-      Vector2 toVector = Vector2.MoveTowards(transform.position, nextPosition, speed * Time.deltaTime);
+        if (Vector2.Distance(transform.position, nextPosition) > 0.1f)
+        {
+            //現在地から次のポイントへのベクトルを作成
+            Vector2 toVector = Vector2.MoveTowards(transform.position, nextPosition, speed * Time.deltaTime);
 
-      //次のポイントへ移動
-      rb.MovePosition(toVector);
+            //次のポイントへ移動
+            rb.MovePosition(toVector);
+        }
+        else
+        {
+            rb.MovePosition(nextPosition);
+            bossPosNum = Random.Range(0, bossPosVol);
+            bossActNum = Random.Range(0, bossActVol);
+            Debug.Log("Next Action:" + bossActNum);
+            Debug.Log("Next Position:" + bossPosNum);
+            nextPosition = bossPositions[bossPosNum].transform.position;
+            bossAct = BossAct.Atatck;
+        }
     }
-    else
+
+    private void Attack()
     {
-      rb.MovePosition(nextPosition);
-      bossPosNum = Random.Range(0, bossPosVol);
-      bossActNum = Random.Range(0, bossActVol);
-      Debug.Log("Next Action:" + bossActNum);
-      Debug.Log("Next Position:" + bossPosNum);
-      nextPosition = bossPositions[bossPosNum].transform.position;
-      bossAct = BossAct.Atatck;
-    }
-  }
+        if (!isAttck)
+        {
+            isAttck = true;
+            iBoss.SetAttack(bossActNum);
+        }
 
-  private void Attack()
-  {
-    switch (bossActNum)
+    }
+
+    public void FinishAct()
     {
-      case 0:
-        iBoss.Attack0();
-        break;
-      default:
-        FinishAct();
-        break;
+        isAttck = false;
+        bossAct = BossAct.Move;
     }
-
-  }
-
-  public void FinishAct()
-  {
-    bossAct = BossAct.Move;
-  }
 }

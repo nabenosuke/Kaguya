@@ -251,7 +251,7 @@ Grid:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 59672370}
   m_Enabled: 1
-  m_CellSize: {x: 1, y: 1, z: 0}
+  m_CellSize: {x: 1.28, y: 1.28, z: 0}
   m_CellGap: {x: 0, y: 0, z: 0}
   m_CellLayout: 0
   m_CellSwizzle: 0
@@ -781,7 +781,7 @@ TilemapRenderer:
   m_SortingLayer: -2
   m_SortingOrder: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
-  m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
+  m_ChunkCullingBounds: {x: 0.13999999, y: 0.13999999, z: 0}
   m_MaxChunkCount: 16
   m_MaxFrameAge: 16
   m_SortOrder: 0
@@ -2010,7 +2010,7 @@ PrefabInstance:
     - target: {fileID: 7071926144274881811, guid: a0897ac43d7bd4749b2c0575028d1fa9,
         type: 3}
       propertyPath: characterID
-      value: 4
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 7847170927224045277, guid: a0897ac43d7bd4749b2c0575028d1fa9,
         type: 3}
@@ -3729,16 +3729,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8275704706581979983, guid: 89f757dee73b4314e823c629116c88b9,
-        type: 3}
-      propertyPath: defaultSpeed
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 8275704706581979983, guid: 89f757dee73b4314e823c629116c88b9,
-        type: 3}
-      propertyPath: defaultRunAnimSpeed
-      value: 0.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 89f757dee73b4314e823c629116c88b9, type: 3}

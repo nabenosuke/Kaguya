@@ -166,7 +166,7 @@ public class Player : MonoBehaviour, IDamage
         }
         else
         {
-            rb.velocity = new Vector2(0, rb.velocity.y + Physics.gravity.y * Time.fixedDeltaTime);
+            rb.velocity = new Vector2(0, rb.velocity.y - gravity * Time.fixedDeltaTime);
         }
     }
 
