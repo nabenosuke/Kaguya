@@ -10,6 +10,7 @@ public class Player : MonoBehaviour, IDamage
     #endregion
 
     #region //プライベート変数
+    [SerializeField] private AudioClip jumpSE = null;
     private Animator anim = null;
     private Rigidbody2D rb = null;
     private CapsuleCollider2D capcol = null;
@@ -228,6 +229,7 @@ public class Player : MonoBehaviour, IDamage
                 isGetDownUp = false;
                 if (!isJump)
                 {
+                    GManager.instance.PlaySE(jumpSE);
                     ySpeed += jumpPower;
                     isJump = true;
                 }

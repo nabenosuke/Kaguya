@@ -85,6 +85,7 @@ public class Boss : MonoBehaviour
             //次のポイントへ移動
             rb.MovePosition(toVector);
         }
+        //指定位置に到着
         else
         {
             rb.MovePosition(nextPosition);

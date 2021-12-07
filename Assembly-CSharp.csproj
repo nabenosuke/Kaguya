@@ -39,6 +39,7 @@
      <Compile Include="Assets\Script\AttackObject.cs" />
      <Compile Include="Assets\Script\ClearItem.cs" />
      <Compile Include="Assets\Script\DamageObject.cs" />
+     <Compile Include="Assets\Script\DelayDestroy.cs" />
      <Compile Include="Assets\Script\Enemy\BakeG.cs" />
      <Compile Include="Assets\Script\Enemy\BakeW.cs" />
      <Compile Include="Assets\Script\Enemy\Boss.cs" />

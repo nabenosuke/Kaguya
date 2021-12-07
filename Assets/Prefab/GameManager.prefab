@@ -47,7 +47,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startPos: {x: 0, y: 0, z: 0}
-  playerName: NICO
+  characterID: 7
+  characterName: NICO
   stageNum: 1
   continueNum: 3
   playerHP: 3

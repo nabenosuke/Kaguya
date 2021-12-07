@@ -1049,6 +1049,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ground: {fileID: 8275704707590848997}
   attackObj: {fileID: 8275704708043276612}
+  jumpSE: {fileID: 8300000, guid: b9cf1474ef832e847bbccc1d085b1771, type: 3}
   defaultSpeed: 6
   defaultRunAnimSpeed: 0.5
   jumpPower: 14

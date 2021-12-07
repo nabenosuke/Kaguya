@@ -5,35 +5,42 @@ using UnityEngine.SceneManagement;
 
 public class StageStart : MonoBehaviour
 {
-  private float time;
-  [SerializeField] private float goTime;
-  private string nextStage;
+    [SerializeField] private AudioClip museIntro;
+    [SerializeField] private AudioClip ariseIntro;
+    private AudioSource audioSource;
+    [SerializeField] private float goTime;
 
-  void Start()
-  {
-    time = 0f;
-  }
-  void Update()
-  {
-    time += Time.deltaTime;
-    if (time > goTime)
+
+    private string nextStage;
+
+    void Start()
     {
-      GoStage();
+        audioSource = GetComponent<AudioSource>();
+        Invoke("GoStage", goTime);
+        //arise操作時はXOR?
+        if (GManager.instance.stageNum <= GManager.instance.maxStageNum)
+        {
+            audioSource.clip = museIntro;
+        }
+        else
+        {
+            audioSource.clip = ariseIntro;
+        }
+        audioSource.Play();
     }
-  }
-  public void GoStage()
-  {
-    if (GManager.instance.stageNum <= GManager.instance.maxStageNum)
+    public void GoStage()
     {
-      nextStage = "Stage" + GManager.instance.stageNum;
-      Debug.Log("Go " + nextStage);
-      SceneManager.LoadScene(nextStage);
+        if (GManager.instance.stageNum <= GManager.instance.maxStageNum)
+        {
+            nextStage = "Stage" + GManager.instance.stageNum;
+            Debug.Log("Go " + nextStage);
+            SceneManager.LoadScene(nextStage);
+        }
+        else
+        {
+            nextStage = "Boss_Tsubasa";
+            Debug.Log("Go " + nextStage);
+            SceneManager.LoadScene(nextStage);
+        }
     }
-    else
-    {
-      nextStage = "Boss_Tsubasa";
-      Debug.Log("Go " + nextStage);
-      SceneManager.LoadScene(nextStage);
-    }
-  }
 }

@@ -22,15 +22,11 @@ public class Tsubasa : MonoBehaviour, IBoss
     private Boss boss;
     private Vector2 stageLowerLeft;
     private Vector2 stageUpperRight;
-    private int attackID;
+    private int popCount;
     //攻撃時間
-    private float attackTimer = 0f;
     private float moveTimer = 0f;
     private float x = 0f;
     private float y = 0f;
-    private float nextPopTime2 = 0f;
-    //攻撃中か
-    private bool isAttack = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -59,103 +55,78 @@ public class Tsubasa : MonoBehaviour, IBoss
 
     void Update()
     {
-        if (isAttack)
-        {
-            switch (attackID)
-            {
-                case 0:
-                    Attack0();
-                    break;
-                case 1:
-                    Attack1();
-                    break;
-                default:
-                    boss.FinishAct();
-                    break;
-            }
-        }
+
     }
 
     void IBoss.SetAttack(int id)
     {
-        isAttack = true;
-        attackID = id;
+        Invoke("FinishAttack", attackTime);
+        switch (id)
+        {
+            case 0:
+                Attack0();
+                break;
+            case 1:
+                Attack1();
+                break;
+            default:
+                FinishAttack();
+                break;
+        }
     }
 
     void FinishAttack()
     {
         boss.FinishAct();
-        isAttack = false;
-        attackTimer = 0f;
     }
     void Attack0()
     { //左右から白バケ
-        if (attackTimer == 0)
+        float x = stageUpperRight.x;
+        for (float y = stageLowerLeft.y + buffer1; y < stageUpperRight.y - buffer1; y = y + interval1 * 2)
         {
-            float x = stageUpperRight.x;
-            for (float y = stageLowerLeft.y + buffer1; y < stageUpperRight.y - buffer1; y = y + interval1 * 2)
-            {
-                GameObject g = Instantiate(bakeW);
-                g.transform.position = new Vector2(x, y);
-                g.SetActive(true);
-            }
-
-            x = stageLowerLeft.x;
-            for (float y = stageLowerLeft.y + buffer1 + interval1; y < stageUpperRight.y - buffer1; y = y + interval1 * 2)
-            {
-                GameObject g = Instantiate(bakeW);
-                g.transform.position = new Vector2(x, y);
-                g.GetComponent<Enemy>().isRight = true;
-                g.SetActive(true);
-            }
+            GameObject g = Instantiate(bakeW);
+            g.transform.position = new Vector2(x, y);
+            g.SetActive(true);
         }
 
-        if (attackTimer < attackTime)
+        x = stageLowerLeft.x;
+        for (float y = stageLowerLeft.y + buffer1 + interval1; y < stageUpperRight.y - buffer1; y = y + interval1 * 2)
         {
-            attackTimer += Time.deltaTime;
-        }
-        else
-        {
-            FinishAttack();
+            GameObject g = Instantiate(bakeW);
+            g.transform.position = new Vector2(x, y);
+            g.GetComponent<Enemy>().isRight = true;
+            g.SetActive(true);
         }
     }
 
-
+    //左右から緑バケ
     void Attack1()
-    { //左右から緑バケ
-        if (attackTimer == 0)
+    {
+        StartCoroutine(CoroutineAttack1());
+    }
+    IEnumerator CoroutineAttack1()
+    {
+        for (int i = 0; i < pop_num2; i++)
         {
-            nextPopTime2 = 0f;
+            yield return new WaitForSeconds(interval2_pop);
+            PopBakeG();
         }
-        if (nextPopTime2 < interval2_pop * pop_num2)
-        {
-            if (attackTimer > nextPopTime2)
-            {
-                x = stageUpperRight.x;
-                GameObject g1 = Instantiate(bakeG);
-                y = (stageUpperRight.y - stageLowerLeft.y) * pos2 + stageLowerLeft.y;
-                g1.transform.position = new Vector2(x, y);
-                g1.SetActive(true);
+    }
+    void PopBakeG()
+    {
+        x = stageUpperRight.x;
+        GameObject g1 = Instantiate(bakeG);
+        y = (stageUpperRight.y - stageLowerLeft.y) * pos2 + stageLowerLeft.y;
+        g1.transform.position = new Vector2(x, y);
+        g1.SetActive(true);
 
-                x = stageLowerLeft.x;
-                GameObject g2 = Instantiate(bakeG);
-                y = (stageLowerLeft.y - stageUpperRight.y) * pos2 + stageUpperRight.y;
-                g2.transform.position = new Vector2(x, y);
-                g2.GetComponent<Enemy>().isRight = true;
-                g2.SetActive(true);
+        x = stageLowerLeft.x;
+        GameObject g2 = Instantiate(bakeG);
+        y = (stageLowerLeft.y - stageUpperRight.y) * pos2 + stageUpperRight.y;
+        g2.transform.position = new Vector2(x, y);
+        g2.GetComponent<Enemy>().isRight = true;
+        g2.SetActive(true);
 
-                nextPopTime2 += interval2_pop;
-            }
-        }
-        if (attackTimer < attackTime)
-        {
-            attackTimer += Time.deltaTime;
-        }
-        else
-        {
-            boss.FinishAct();
-            isAttack = false;
-            attackTimer = 0f;
-        }
+        popCount++;
     }
 }
