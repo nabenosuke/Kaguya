@@ -135,7 +135,7 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_Size: {x: 1.28, y: 1.28}
+  m_Size: {x: 1.1, y: 1.1}
   m_Direction: 0
 --- !u!50 &5693268043475900747
 Rigidbody2D:
@@ -177,3 +177,4 @@ MonoBehaviour:
   deathSE: {fileID: 8300000, guid: 7da2c4cba41f60f4b937075fad8b8f3e, type: 3}
   deathImage: {fileID: 6662950840967763163, guid: aa1156f8a66675f489e8d0f75386ea07,
     type: 3}
+  hpGauge: {fileID: 0}

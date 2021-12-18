@@ -51,6 +51,7 @@ MonoBehaviour:
   characterName: NICO
   stageNum: 1
   continueNum: 3
+  defaultContinueNum: 3
   playerHP: 3
   defaultHP: 3
   kagayaki: 0

@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class ClearItem : MonoBehaviour
 {
-    public AudioClip gameClear = null;
 
+    [SerializeField] private AudioClip clearBGM;
     private StageControler stageControler = null;
     private bool isClear = false;
     // Start is called before the first frame update
@@ -26,9 +26,9 @@ public class ClearItem : MonoBehaviour
         {
             if (!isClear)
             {
+                GManager.instance.PlaySE(clearBGM);
                 isClear = true;
                 Debug.Log("ゲームクリア");
-                GManager.instance.PlaySE(gameClear);
                 GManager.instance.isClear = true;
             }
         }

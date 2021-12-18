@@ -8,11 +8,10 @@ public class StageControler : MonoBehaviour
     public GManager gManager;
     public int stage;
 
+    [SerializeField] private AudioClip missBGM;
     private BGM bgm;
     private Player player;
-    private float deadTime = 0f;
-    private float clearTime = 0f;
-    private float goStartSceneTime_dead = 3f;
+    private float goStartSceneTime_dead = 4f;
     private float goStartSceneTime_clear = 6f;
     private bool isDead = false;
     private bool isClear = false;
@@ -31,7 +30,7 @@ public class StageControler : MonoBehaviour
         {
             GManager.instance.startPos = GameObject.Find("StartPos").transform.position;
         }
-        GManager.instance.Initialize();
+        GManager.instance.InitializeStage();
         GManager.instance.stageNum = stage;
         bgm = GameObject.Find("BGM").GetComponent<BGM>();
         player = GameObject.Find("Player").GetComponentInChildren<Player>();
@@ -45,15 +44,10 @@ public class StageControler : MonoBehaviour
         {
             if (!isDead)
             {
+                GManager.instance.PlaySE(missBGM);
                 isDead = true;
                 bgm.Stop();
-            }
-            deadTime += Time.deltaTime;
-            if (deadTime > goStartSceneTime_dead)
-            {
-                GManager.instance.continueNum -= 1;
-                GManager.instance.playerHP = GManager.instance.defaultHP;
-                SceneManager.LoadScene("Start");
+                Invoke("MissStage", goStartSceneTime_dead);
             }
         }
 
@@ -63,26 +57,38 @@ public class StageControler : MonoBehaviour
             {
                 isClear = true;
                 bgm.Stop();
-            }
-            clearTime += Time.deltaTime;
-            if (clearTime > goStartSceneTime_clear)
-            {
-                if (GManager.instance.stageNum < GManager.instance.maxStageNum)
-                {
-                    GManager.instance.stageNum += 1;
-                    SceneManager.LoadScene("Start");
-                }
-                else
-                {
-                    GManager.instance.stageNum = 11;
-                    SceneManager.LoadScene("Start");
-                }
+                Invoke("ClearStage", goStartSceneTime_clear);
             }
         }
     }
 
-    public void Miss()
+    private void MissStage()
     {
+        GManager.instance.continueNum -= 1;
+        GManager.instance.playerHP = GManager.instance.defaultHP;
+        if (GManager.instance.continueNum >= 0)
+        {
+            SceneManager.LoadScene("Start");
+        }
+        else
+        {
+            GManager.instance.InitializeGame();
+            SceneManager.LoadScene("GameOver");
+        }
+    }
+
+    private void ClearStage()
+    {
+        if (GManager.instance.stageNum < GManager.instance.maxStageNum)
+        {
+            GManager.instance.stageNum += 1;
+            SceneManager.LoadScene("Start");
+        }
+        else
+        {
+            GManager.instance.stageNum = 11;
+            SceneManager.LoadScene("Start");
+        }
     }
 
 

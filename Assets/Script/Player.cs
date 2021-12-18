@@ -68,7 +68,7 @@ public class Player : MonoBehaviour, IDamage
         if (!isDead && !GManager.instance.isClear)
         {
             //攻撃
-            if (Input.GetKeyDown(KeyCode.Z))
+            if (Input.GetButtonDown("Fire1"))
             {
                 if (!isAttack)
                 {
@@ -100,7 +100,7 @@ public class Player : MonoBehaviour, IDamage
             wasGround = isGround;
             isGround = ground.IsGround();
             //ジャンプ判定
-            if (Input.GetKeyDown(KeyCode.UpArrow))
+            if (Input.GetButtonDown("Jump"))
             {
                 isGetDownUp = true;
             }

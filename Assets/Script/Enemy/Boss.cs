@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Boss : MonoBehaviour
 {
@@ -24,11 +25,15 @@ public class Boss : MonoBehaviour
     private BossState nowState = BossState.StartEnsyutu;
     private BossAct bossAct = BossAct.Move;
     private Rigidbody2D rb;
+    [SerializeField] private Slider hpGauge;
     private Vector2 nextPosition;
-    private int bossActNum = 0;
-    private int bossActVol = 2;
-    private int bossPosNum = 0;
+    [SerializeField] private Enemy enemy;
+    [SerializeField] private int bossActNum = 0;
+    private int bossActVol = 3;
+    [SerializeField] private int bossPosNum = 0;
     private int bossPosVol = 4;
+    [SerializeField] float startTime = 6.0f;
+    float hpGaugeSpeed = 0.25f;
     private bool isAttck = false;
     // Start is called before the first frame update
     void Start()
@@ -37,6 +42,7 @@ public class Boss : MonoBehaviour
         nextPosition = bossPositions[bossPosNum].transform.position;
         rb = GetComponent<Rigidbody2D>();
         iBoss = GetComponent<IBoss>();
+        enemy.isArmor = true;
     }
 
     // Update is called once per frame
@@ -54,8 +60,11 @@ public class Boss : MonoBehaviour
         switch (nowState)
         {
             case BossState.StartEnsyutu:
-                nowState = BossState.Battle;
-                //登場演出時の処理を書く
+                Invoke("StartBattle", startTime);
+                if (hpGauge.value < 1)
+                {
+                    hpGauge.value += Time.deltaTime * hpGaugeSpeed;
+                }
                 break;
             case BossState.Battle:
                 switch (bossAct)
@@ -112,5 +121,11 @@ public class Boss : MonoBehaviour
     {
         isAttck = false;
         bossAct = BossAct.Move;
+    }
+
+    private void StartBattle()
+    {
+        enemy.isArmor = false;
+        nowState = BossState.Battle;
     }
 }

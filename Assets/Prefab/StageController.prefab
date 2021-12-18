@@ -45,3 +45,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gManager: {fileID: 0}
   stage: 0
+  missBGM: {fileID: 8300000, guid: 85f52b3d9ddc3284d9f7fcdc5283b9f1, type: 3}
+  clearBGM: {fileID: 8300000, guid: 727798a3944f32c42aa3eaf58a97ee1d, type: 3}

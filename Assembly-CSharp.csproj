@@ -52,6 +52,7 @@
      <Compile Include="Assets\Script\Enemy\MoveJump.cs" />
      <Compile Include="Assets\Script\Enemy\MoveSin.cs" />
      <Compile Include="Assets\Script\Enemy\MoveStraight.cs" />
+     <Compile Include="Assets\Script\Enemy\MoveTurning.cs" />
      <Compile Include="Assets\Script\Enemy\Ninja.cs" />
      <Compile Include="Assets\Script\Enemy\Tsubasa.cs" />
      <Compile Include="Assets\Script\GroundCheck.cs" />
@@ -63,7 +64,9 @@
      <Compile Include="Assets\Script\UI\CharacterName.cs" />
      <Compile Include="Assets\Script\UI\ContinueNum.cs" />
      <Compile Include="Assets\Script\UI\DisplayCharacter.cs" />
+     <Compile Include="Assets\Script\UI\ED.cs" />
      <Compile Include="Assets\Script\UI\GManager.cs" />
+     <Compile Include="Assets\Script\UI\GameOver.cs" />
      <Compile Include="Assets\Script\UI\HPNum.cs" />
      <Compile Include="Assets\Script\UI\IgnoreMouseInputModule.cs" />
      <Compile Include="Assets\Script\UI\KagayakiNum.cs" />
@@ -625,6 +628,9 @@
     <Reference Include="Unity.2D.SpriteShape.Editor">
         <HintPath>C:/Users/なべのすけ/Unity/Kaguya/Library/ScriptAssemblies/Unity.2D.SpriteShape.Editor.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.2D.Tilemap.Extras.Editor">
+        <HintPath>C:/Users/なべのすけ/Unity/Kaguya/Library/ScriptAssemblies/Unity.2D.Tilemap.Extras.Editor.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.TextMeshPro.Editor">
         <HintPath>C:/Users/なべのすけ/Unity/Kaguya/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
@@ -675,6 +681,9 @@
     </Reference>
     <Reference Include="Unity.2D.Animation.Editor">
         <HintPath>C:/Users/なべのすけ/Unity/Kaguya/Library/ScriptAssemblies/Unity.2D.Animation.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.2D.Tilemap.Extras">
+        <HintPath>C:/Users/なべのすけ/Unity/Kaguya/Library/ScriptAssemblies/Unity.2D.Tilemap.Extras.dll</HintPath>
     </Reference>
     <Reference Include="com.unity.cinemachine.editor">
         <HintPath>C:/Users/なべのすけ/Unity/Kaguya/Library/ScriptAssemblies/com.unity.cinemachine.editor.dll</HintPath>

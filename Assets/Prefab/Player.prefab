@@ -1050,7 +1050,7 @@ MonoBehaviour:
   ground: {fileID: 8275704707590848997}
   attackObj: {fileID: 8275704708043276612}
   jumpSE: {fileID: 8300000, guid: b9cf1474ef832e847bbccc1d085b1771, type: 3}
-  defaultSpeed: 6
+  defaultSpeed: 8
   defaultRunAnimSpeed: 0.5
   jumpPower: 14
   interval: 0.3
@@ -1086,7 +1086,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 6cf3090953ec0c3439f6f66202adb6b0, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0

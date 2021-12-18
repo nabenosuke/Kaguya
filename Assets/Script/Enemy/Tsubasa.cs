@@ -9,15 +9,25 @@ public class Tsubasa : MonoBehaviour, IBoss
 
     [Header("浮遊間隔")] [SerializeField] private float movePeriod = 2;
     [Header("浮遊幅")] [SerializeField] private float moveWide = 0.1f;
-    [Header("Attack1の白バケの幅")] [SerializeField] private float interval1 = 2;
-    [Header("Attack1の白バケの上下の出現距離")] [SerializeField] private float buffer1 = 3;
-    [Header("Attack2の緑バケの位置(0-1)")] [SerializeField] private float pos2 = 0.3f;
-    [Header("Attack2の緑バケの出現間隔")] [SerializeField] private float interval2_pop = 0.5f;
-    [Header("Attack2の緑バケの出現回数")] [SerializeField] private int pop_num2 = 7;
+    #region //攻撃
+    [SerializeField] private GameObject bakeW;
+    [Header("Attack0の白バケの幅")] [SerializeField] private float interval0 = 2.56f;
+    [Header("Attack0の白バケの上下の出現距離")] [SerializeField] private float buffer0 = 0;
+    [SerializeField] private GameObject bakeG;
+    [Header("Attack1の緑バケの位置(0-1)")] [SerializeField] private float pos1 = 0.3f;
+    [Header("Attack1の緑バケの出現間隔")] [SerializeField] private float intervalPop1 = 0.5f;
+    [Header("Attack1の緑バケの出現回数")] [SerializeField] private int popNum1 = 7;
+    [SerializeField] private GameObject bakeB;
+    [Header("Attack2の黒バケの出現回数")] [SerializeField] private int bakeNum2 = 5;
+    [Header("Attack2の黒バケが拡散する時間")] [SerializeField] private float spreadTime2 = 6f;
+    private float bakeRad2;
+    private float intervalPop2;
+
+    #endregion
 
     private GameObject stageArea;
-    private GameObject bakeW;
-    private GameObject bakeG;
+
+
     private Rigidbody2D rb;
     private Boss boss;
     private Vector2 stageLowerLeft;
@@ -33,8 +43,14 @@ public class Tsubasa : MonoBehaviour, IBoss
         rb = GetComponent<Rigidbody2D>();
         boss = GetComponent<Boss>();
         stageArea = GameObject.Find("StageArea");
-        bakeW = transform.Find("BakeW").gameObject;
-        bakeG = transform.Find("BakeG").gameObject;
+        if (bakeW == null || bakeG == null || bakeB == null)
+        {
+            bakeW = transform.Find("BakeW").gameObject;
+            bakeG = transform.Find("BakeG").gameObject;
+            bakeB = transform.Find("BakeB").gameObject;
+        }
+        bakeRad2 = bakeB.GetComponent<MoveTurning>().radius;
+        intervalPop2 = bakeB.GetComponent<MoveTurning>().period;
         //ステージの広さ取得
         stageLowerLeft = new Vector2(stageArea.transform.position.x - stageArea.transform.localScale.x / 2, stageArea.transform.position.y - stageArea.transform.localScale.y / 2);
         stageUpperRight = new Vector2(stageArea.transform.position.x + stageArea.transform.localScale.x / 2, stageArea.transform.position.y + stageArea.transform.localScale.y / 2);
@@ -69,6 +85,9 @@ public class Tsubasa : MonoBehaviour, IBoss
             case 1:
                 Attack1();
                 break;
+            case 2:
+                Attack2();
+                break;
             default:
                 FinishAttack();
                 break;
@@ -82,7 +101,7 @@ public class Tsubasa : MonoBehaviour, IBoss
     void Attack0()
     { //左右から白バケ
         float x = stageUpperRight.x;
-        for (float y = stageLowerLeft.y + buffer1; y < stageUpperRight.y - buffer1; y = y + interval1 * 2)
+        for (float y = stageLowerLeft.y + buffer0; y < stageUpperRight.y - buffer0; y = y + interval0 * 2)
         {
             GameObject g = Instantiate(bakeW);
             g.transform.position = new Vector2(x, y);
@@ -90,7 +109,7 @@ public class Tsubasa : MonoBehaviour, IBoss
         }
 
         x = stageLowerLeft.x;
-        for (float y = stageLowerLeft.y + buffer1 + interval1; y < stageUpperRight.y - buffer1; y = y + interval1 * 2)
+        for (float y = stageLowerLeft.y + buffer0 + interval0; y < stageUpperRight.y - buffer0; y = y + interval0 * 2)
         {
             GameObject g = Instantiate(bakeW);
             g.transform.position = new Vector2(x, y);
@@ -106,9 +125,9 @@ public class Tsubasa : MonoBehaviour, IBoss
     }
     IEnumerator CoroutineAttack1()
     {
-        for (int i = 0; i < pop_num2; i++)
+        for (int i = 0; i < popNum1; i++)
         {
-            yield return new WaitForSeconds(interval2_pop);
+            yield return new WaitForSeconds(intervalPop1);
             PopBakeG();
         }
     }
@@ -116,17 +135,38 @@ public class Tsubasa : MonoBehaviour, IBoss
     {
         x = stageUpperRight.x;
         GameObject g1 = Instantiate(bakeG);
-        y = (stageUpperRight.y - stageLowerLeft.y) * pos2 + stageLowerLeft.y;
+        y = (stageUpperRight.y - stageLowerLeft.y) * pos1 + stageLowerLeft.y;
         g1.transform.position = new Vector2(x, y);
         g1.SetActive(true);
 
         x = stageLowerLeft.x;
         GameObject g2 = Instantiate(bakeG);
-        y = (stageLowerLeft.y - stageUpperRight.y) * pos2 + stageUpperRight.y;
+        y = (stageLowerLeft.y - stageUpperRight.y) * pos1 + stageUpperRight.y;
         g2.transform.position = new Vector2(x, y);
         g2.GetComponent<Enemy>().isRight = true;
         g2.SetActive(true);
 
         popCount++;
+    }
+
+    void Attack2()
+    {
+        StartCoroutine(CoroutineAttack2());
+
+    }
+
+    IEnumerator CoroutineAttack2()
+    {
+        for (int i = 0; i < bakeNum2; i++)
+        {
+            GameObject g = Instantiate(bakeB);
+            x = transform.position.x;
+            y = transform.position.y + bakeRad2;
+            g.transform.position = new Vector3(x, y);
+            g.SetActive(true);
+            g.GetComponent<MoveTurning>().spreadTime = spreadTime2 - i * intervalPop2 / bakeNum2;
+            yield return new WaitForSeconds(intervalPop2 / bakeNum2);
+
+        }
     }
 }

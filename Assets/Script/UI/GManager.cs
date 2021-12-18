@@ -10,10 +10,11 @@ public class GManager : MonoBehaviour
     [Header("キャラクターネーム")] public string characterName = "NICO";
     [Header("現在のステージ")] public int stageNum;
     [Header("現在の残機")] public int continueNum;
+    [Header("デフォルト残機")] public int defaultContinueNum = 3;
     [Header("現在のHP")] public int playerHP;
     [Header("デフォルトHP")] public int defaultHP = 3;
     [Header("輝き数")] public int kagayaki;
-    [Header("ボス戦前のステージ")] public int maxStageNum = 1;
+    [Header("ボス戦前のステージ")] public int maxStageNum = 2;
     [Header("重力")] public float gravity = 20f;
     public bool isDead;
     public bool isClear;
@@ -70,16 +71,25 @@ public class GManager : MonoBehaviour
         }
     }
 
-    public void Initialize()
+    public void InitializeStage()
     {
         isClear = false;
         isDead = false;
-        /*
-        if (playerHP == 0)
+
+    }
+
+    public void InitializeGame()
+    {
+        isClear = false;
+        isDead = false;
+        stageNum = 1;
+        continueNum = defaultContinueNum;
+        kagayaki = 0;
+        playerHP = defaultHP;
+        for (int i = 0; i < 33; i++)
         {
-          playerHP = defaultHP;
+            isStageInitialize[i] = false;
         }
-        */
     }
 
     public void PlaySE(AudioClip audioClip)
@@ -101,7 +111,7 @@ public class GManager : MonoBehaviour
     public void SetCharacterID(int charaID)
     {
         characterID = charaID;
-        if (charaID <= characterNameList.Length || characterID > 0)
+        if (charaID <= characterNameList.Length && characterID > 0)
         {
             characterName = characterNameList[charaID - 1];
         }
