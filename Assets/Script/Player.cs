@@ -6,7 +6,8 @@ public class Player : MonoBehaviour, IDamage
 {
     #region//パブリック変数
     [Header("接地判定")] public GroundCheck ground; //接地判定
-    [Header("飛び道具")] public GameObject attackObj;
+    [Header("飛び道具のリスト")] public GameObject[] attackObjs;
+    [Header("飛び道具")] private GameObject attackObj;
     #endregion
 
     #region //プライベート変数
@@ -19,12 +20,13 @@ public class Player : MonoBehaviour, IDamage
     private GameObject[] characterImages;
     private AttackObject attackObject = null;
     private int characterID = 1;
+    private int number;//確立器
     [Header("移動速度")] [SerializeField] private float defaultSpeed;
     private float speed = 0.0f;
     [Header("移動モーション速度")] [SerializeField] private float defaultRunAnimSpeed;
     private float runAnimSpeed = 0.0f;
     [Header("ジャンプした瞬間の速度")] [SerializeField] private float jumpPower;
-    [Header("攻撃間隔")] [SerializeField] private float interval;
+    [Header("攻撃間隔")] [SerializeField] private float attackInterval;
     private float dashTime = 0.0f;
     private float beforeKey = 0.0f;
     private float attackTimer = 0.0f;
@@ -40,6 +42,11 @@ public class Player : MonoBehaviour, IDamage
     private bool isDamage = false;
     private bool isDead = false;
 
+
+    //ほのか
+    private float attackScale = 1.5f;
+    private int attackDamageScale = 2;
+    private int criticalRate = 5;
     //にこ
     private float spinSpeed = 2.0f;
     private float spinTimer = 0f;
@@ -81,7 +88,7 @@ public class Player : MonoBehaviour, IDamage
             if (isAttack)
             {
                 attackTimer += Time.deltaTime;
-                if (attackTimer > interval)
+                if (attackTimer > attackInterval)
                 {
                     isAttack = false;
                 }
@@ -291,13 +298,24 @@ public class Player : MonoBehaviour, IDamage
     public void Attack()
     {
         GameObject g = Instantiate(attackObj);
-        g.transform.SetParent(transform);
+        //g.transform.SetParent(transform);
         g.transform.position = attackObj.transform.position;
-        g.transform.localScale = attackObj.transform.localScale;
-        g.SetActive(true);
         attackObject = g.GetComponent<AttackObject>();
-        //fire.left1right_1=transform.localScale.x;
-        g.transform.parent = null;
+        //ほのか
+        if (characterID == 1)
+        {
+            number = Random.Range(0, 10);
+            //クリティカル攻撃
+            if (number < criticalRate)
+            {
+                attackObject.SetScale(attackScale, attackDamageScale);
+            }
+        }
+        //g.transform.localScale = attackObj.transform.localScale;
+        g.transform.localScale = new Vector3(g.transform.localScale.x * transform.localScale.x, g.transform.localScale.y, 1);
+        g.SetActive(true);
+
+        //g.transform.parent = null;
         anim.SetTrigger("attack");
     }
 
@@ -326,7 +344,7 @@ public class Player : MonoBehaviour, IDamage
     //キャラ選択
     void SetCharacter(int charaID)
     {
-        Debug.Log("CHaracterListLength:" + characterImages.Length);
+        //キャラクターの画像変更
         foreach (var chara in characterImages)
         {
             chara.SetActive(false);
@@ -338,18 +356,27 @@ public class Player : MonoBehaviour, IDamage
         characterImage.SetActive(true);
 
         //キャラ毎のステータス設定
+        speed = defaultSpeed;
+        runAnimSpeed = defaultRunAnimSpeed;
         switch (charaID)
         {
-            //りん
+            //ほのか 球
+            case 1:
+                attackObj = attackObjs[2];
+                break;
+            //りん クナイ
             case 4:
                 speed = defaultSpeed * 1.2f;
                 runAnimSpeed = defaultRunAnimSpeed * 1.2f;
+                attackObj = attackObjs[0];
                 break;
-
+            //にこ 手裏剣
+            case 7:
+                attackObj = attackObjs[1];
+                break;
             default:
-                speed = defaultSpeed;
-                runAnimSpeed = defaultRunAnimSpeed;
                 break;
         }
+        attackInterval = attackObj.GetComponent<AttackObject>().attackInterval;
     }
 }

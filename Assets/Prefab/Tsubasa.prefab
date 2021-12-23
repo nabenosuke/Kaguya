@@ -145,6 +145,7 @@ MonoBehaviour:
   attack: 1
   hp: 30
   isRight: 0
+  isArmor: 0
   hitSE: {fileID: 8300000, guid: b31f028734b25f64f882e399dc794d39, type: 3}
   deathSE: {fileID: 8300000, guid: 7da2c4cba41f60f4b937075fad8b8f3e, type: 3}
   deathImage: {fileID: 6662950840967763163, guid: aa1156f8a66675f489e8d0f75386ea07,
@@ -168,9 +169,12 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  speed: 10
+  speed: 3
+  hpGauge: {fileID: 0}
+  enemy: {fileID: 8054050121782325842}
   bossActNum: 0
   bossPosNum: 0
+  startTime: 8
 --- !u!50 &8054050121782325853
 Rigidbody2D:
   serializedVersion: 4
@@ -207,14 +211,14 @@ MonoBehaviour:
   attackTime: 10
   movePeriod: 2
   moveWide: 0.2
-  bakeW: {fileID: 0}
+  bakeW: {fileID: 2361916963904418804}
   interval0: 1.28
   buffer0: 0
-  bakeG: {fileID: 0}
+  bakeG: {fileID: 285730948177935942}
   pos1: 0.3
   intervalPop1: 0.5
   popNum1: 7
-  bakeB: {fileID: 0}
+  bakeB: {fileID: 285730948177935942}
   bakeNum2: 5
   spreadTime2: 6
 --- !u!95 &8054050121782325851

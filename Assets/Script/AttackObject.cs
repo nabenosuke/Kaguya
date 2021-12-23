@@ -4,55 +4,42 @@ using UnityEngine;
 
 public class AttackObject : MonoBehaviour
 {
-    [Header("スピード")] public float speed = 3.0f;
-    [Header("最大飛距離")] public float maxDistance = 100f;
-    [Header("向き")] public float left1right_1 = 1;
+    //[Header("最大飛距離")] public float maxDistance = 100f;
+    [Header("消失時間")] public float destroyTime = 0.4f;
     [Header("攻撃力")] public int attack = 1;
+    [Header("攻撃間隔")] public float attackInterval = 0.3f;
+    [Header("攻撃エフェクト")] [SerializeField] private GameObject attackEffect;
+    [SerializeField] public bool isIgnoreEnemy;
+    [SerializeField] public bool isIgnoreGround;
+    [SerializeField] private int attackScale = 1;
+    [SerializeField] private float scale = 1;
 
 
-    private Rigidbody2D rb;
-    private Vector3 defaultPos;
-    [SerializeField] AudioClip se;
-    private float direction;
+    [SerializeField] private AudioClip se;
     // Start is called before the first frame update
     void Start()
     {
         GManager.instance.PlaySE(se);
-        rb = GetComponent<Rigidbody2D>();
-        if (rb == null)
-        {
-            Debug.Log("攻撃物の設定が足りません");
-            Destroy(this.gameObject);
-        }
-        defaultPos = transform.position;
-        if (transform.localScale.x < 0)
-        {
-            left1right_1 = -1;
-        }
-
-
+        attack = attack * attackScale;
+        transform.localScale = new Vector3(transform.localScale.x * scale, transform.localScale.y * scale, transform.localScale.z);
+        Invoke("DestroyThis", destroyTime);
     }
 
     // Update is called once per frame
-    void FixedUpdate()
-    {
-        float d = Vector3.Distance(transform.position, defaultPos);
-        //最大移動距離を超えている
-        if (d > maxDistance)
-        {
-            Destroy(this.gameObject);
-        }
-        else
-        {
-            rb.MovePosition(transform.position += Vector3.left * speed * Time.deltaTime * left1right_1);
-        }
-    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag == "Ground")
         {
-            Destroy(this.gameObject);
+            if (!isIgnoreGround)
+            {
+                if (attackEffect != null)
+                {
+                    generateEffect();
+                }
+                Destroy(this.gameObject);
+            }
+
         }
         else if (collision.tag == "Enemy")
         {
@@ -60,8 +47,34 @@ public class AttackObject : MonoBehaviour
             if (damage != null)
             {
                 damage.damage(attack);
-                Destroy(this.gameObject);
+                if (!isIgnoreEnemy)
+                {
+                    if (attackEffect != null)
+                    {
+                        generateEffect();
+                    }
+                    Destroy(this.gameObject);
+                }
             }
         }
+    }
+
+    private void generateEffect()
+    {
+        GameObject g = Instantiate(attackEffect);
+        g.GetComponent<AttackObject>().SetScale(scale, attackScale);
+        g.transform.position = transform.position;
+        g.SetActive(true);
+    }
+
+    private void DestroyThis()
+    {
+        Destroy(this.gameObject);
+    }
+
+    public void SetScale(float s, int aS)
+    {
+        scale = s;
+        attackScale = aS;
     }
 }

@@ -88,11 +88,8 @@ public class Boss : MonoBehaviour
     {
         if (Vector2.Distance(transform.position, nextPosition) > 0.1f)
         {
-            //現在地から次のポイントへのベクトルを作成
-            Vector2 toVector = Vector2.MoveTowards(transform.position, nextPosition, speed * Time.deltaTime);
-
-            //次のポイントへ移動
-            rb.MovePosition(toVector);
+            //現在地から次のポイントへのベクトルを作成し次のポイントへ移動
+            rb.MovePosition(Vector2.MoveTowards(transform.position, nextPosition, speed * Time.deltaTime));
         }
         //指定位置に到着
         else

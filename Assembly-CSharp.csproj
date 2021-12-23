@@ -58,8 +58,11 @@
      <Compile Include="Assets\Script\GroundCheck.cs" />
      <Compile Include="Assets\Script\IDamage.cs" />
      <Compile Include="Assets\Script\Item.cs" />
+     <Compile Include="Assets\Script\Kunai.cs" />
      <Compile Include="Assets\Script\ObjectCollisionCheck.cs" />
      <Compile Include="Assets\Script\Player.cs" />
+     <Compile Include="Assets\Script\Shuriken.cs" />
+     <Compile Include="Assets\Script\Tama.cs" />
      <Compile Include="Assets\Script\UI\BGM.cs" />
      <Compile Include="Assets\Script\UI\CharacterName.cs" />
      <Compile Include="Assets\Script\UI\ContinueNum.cs" />
