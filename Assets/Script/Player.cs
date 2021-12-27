@@ -17,7 +17,7 @@ public class Player : MonoBehaviour, IDamage
     private CapsuleCollider2D capcol = null;
     private SpriteRenderer sr = null;
     private GameObject characterImage;
-    private GameObject[] characterImages;
+    [Header("キャラの画像リスト")] [SerializeField] private GameObject[] characterImages;
     private AttackObject attackObject = null;
     private int characterID = 1;
     private int number;//確立器
@@ -57,7 +57,6 @@ public class Player : MonoBehaviour, IDamage
     // Start is called before the first frame update
     void Start()
     {
-        characterImages = GameObject.FindGameObjectsWithTag("Character");
         SetCharacter(GManager.instance.characterID);
         //anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
@@ -354,7 +353,11 @@ public class Player : MonoBehaviour, IDamage
         sr = characterImage.GetComponent<SpriteRenderer>();
         anim = characterImage.GetComponent<Animator>();
         characterImage.SetActive(true);
-
+        /*
+        Debug.Log("charaID:" + charaID);
+        Debug.Log("characterID:" + characterID);
+        Debug.Log("GMcharaID:" + GManager.instance.characterID);
+        */
         //キャラ毎のステータス設定
         speed = defaultSpeed;
         runAnimSpeed = defaultRunAnimSpeed;

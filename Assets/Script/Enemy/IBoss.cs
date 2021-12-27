@@ -5,4 +5,5 @@ using UnityEngine;
 public interface IBoss
 {
     void SetAttack(int attackID);
+    void Defeated();
 }

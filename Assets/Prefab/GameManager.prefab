@@ -52,10 +52,11 @@ MonoBehaviour:
   stageNum: 1
   continueNum: 3
   defaultContinueNum: 3
-  playerHP: 3
-  defaultHP: 3
+  playerHP: 5
+  defaultHP: 5
   kagayaki: 0
-  maxStageNum: 1
+  maxStageNum: 2
+  bossStage: 0b000000150000001f000000
   gravity: 20
   isDead: 0
   isClear: 0

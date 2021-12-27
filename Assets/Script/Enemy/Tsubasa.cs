@@ -10,6 +10,7 @@ public class Tsubasa : MonoBehaviour, IBoss
     [Header("浮遊間隔")] [SerializeField] private float movePeriod = 2;
     [Header("浮遊幅")] [SerializeField] private float moveWide = 0.1f;
     #region //攻撃
+    [SerializeField] private GameObject Enemys;
     [SerializeField] private GameObject bakeW;
     [Header("Attack0の白バケの幅")] [SerializeField] private float interval0 = 2.56f;
     [Header("Attack0の白バケの上下の出現距離")] [SerializeField] private float buffer0 = 0;
@@ -104,6 +105,7 @@ public class Tsubasa : MonoBehaviour, IBoss
         for (float y = stageLowerLeft.y + buffer0; y < stageUpperRight.y - buffer0; y = y + interval0 * 2)
         {
             GameObject g = Instantiate(bakeW);
+            g.transform.SetParent(Enemys.transform, true);
             g.transform.position = new Vector2(x, y);
             g.SetActive(true);
         }
@@ -112,6 +114,7 @@ public class Tsubasa : MonoBehaviour, IBoss
         for (float y = stageLowerLeft.y + buffer0 + interval0; y < stageUpperRight.y - buffer0; y = y + interval0 * 2)
         {
             GameObject g = Instantiate(bakeW);
+            g.transform.SetParent(Enemys.transform, true);
             g.transform.position = new Vector2(x, y);
             g.GetComponent<Enemy>().isRight = true;
             g.SetActive(true);
@@ -135,12 +138,14 @@ public class Tsubasa : MonoBehaviour, IBoss
     {
         x = stageUpperRight.x;
         GameObject g1 = Instantiate(bakeG);
+        g1.transform.SetParent(Enemys.transform, true);
         y = (stageUpperRight.y - stageLowerLeft.y) * pos1 + stageLowerLeft.y;
         g1.transform.position = new Vector2(x, y);
         g1.SetActive(true);
 
         x = stageLowerLeft.x;
         GameObject g2 = Instantiate(bakeG);
+        g2.transform.SetParent(Enemys.transform, true);
         y = (stageLowerLeft.y - stageUpperRight.y) * pos1 + stageUpperRight.y;
         g2.transform.position = new Vector2(x, y);
         g2.GetComponent<Enemy>().isRight = true;
@@ -160,6 +165,7 @@ public class Tsubasa : MonoBehaviour, IBoss
         for (int i = 0; i < bakeNum2; i++)
         {
             GameObject g = Instantiate(bakeB);
+            g.transform.SetParent(Enemys.transform, true);
             x = transform.position.x;
             y = transform.position.y + bakeRad2;
             g.transform.position = new Vector3(x, y);
@@ -168,5 +174,10 @@ public class Tsubasa : MonoBehaviour, IBoss
             yield return new WaitForSeconds(intervalPop2 / bakeNum2);
 
         }
+    }
+
+    void IBoss.Defeated()
+    {
+        Destroy(Enemys);
     }
 }

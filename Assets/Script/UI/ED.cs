@@ -53,6 +53,7 @@ public class ED : MonoBehaviour
     {
         if (Input.GetButtonDown("Submit"))
         {
+            GManager.instance.InitializeGame();
             SceneManager.LoadScene("Title");
         }
     }

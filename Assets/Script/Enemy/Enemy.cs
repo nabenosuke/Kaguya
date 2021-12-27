@@ -16,6 +16,7 @@ public class Enemy : MonoBehaviour, IDamage
     [SerializeField] GameObject deathImage;
     #region//ボスのみ
     [SerializeField] Slider hpGauge;
+    [SerializeField] bool isBoos;
     private int maxHP;
     #endregion
     private bool isDead = false;
@@ -61,9 +62,11 @@ public class Enemy : MonoBehaviour, IDamage
                 if (hp <= 0)
                 {
                     GManager.instance.PlaySE(deathSE);
+                    if (isBoos) GetComponent<IBoss>().Defeated();
+                    //撃破画像
                     GameObject g = Instantiate(deathImage);
                     g.transform.position = gameObject.transform.position;
-                    deathImage.SetActive(true);
+                    g.SetActive(true);
                     isDead = true;
                     Destroy(gameObject);
                 }

@@ -1055,6 +1055,16 @@ MonoBehaviour:
   - {fileID: 6323560873786266652}
   - {fileID: 4919066721883777408}
   jumpSE: {fileID: 8300000, guid: b9cf1474ef832e847bbccc1d085b1771, type: 3}
+  characterImages:
+  - {fileID: 1396994492}
+  - {fileID: 670937139}
+  - {fileID: 79214329}
+  - {fileID: 5788573689261762126}
+  - {fileID: 1638131216}
+  - {fileID: 230260336}
+  - {fileID: 233256668}
+  - {fileID: 1013650521}
+  - {fileID: 322166895}
   defaultSpeed: 8
   defaultRunAnimSpeed: 0.5
   jumpPower: 14

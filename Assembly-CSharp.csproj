@@ -37,12 +37,14 @@
   </PropertyGroup>
   <ItemGroup>
      <Compile Include="Assets\Script\AttackObject.cs" />
+     <Compile Include="Assets\Script\Blink.cs" />
      <Compile Include="Assets\Script\ClearItem.cs" />
      <Compile Include="Assets\Script\DamageObject.cs" />
      <Compile Include="Assets\Script\DelayDestroy.cs" />
      <Compile Include="Assets\Script\Enemy\BakeG.cs" />
      <Compile Include="Assets\Script\Enemy\BakeW.cs" />
      <Compile Include="Assets\Script\Enemy\Boss.cs" />
+     <Compile Include="Assets\Script\Enemy\Boss_defeat.cs" />
      <Compile Include="Assets\Script\Enemy\Enemy.cs" />
      <Compile Include="Assets\Script\Enemy\EnemyAttackObject.cs" />
      <Compile Include="Assets\Script\Enemy\EnemyInBoss.cs" />
@@ -64,6 +66,7 @@
      <Compile Include="Assets\Script\Shuriken.cs" />
      <Compile Include="Assets\Script\Tama.cs" />
      <Compile Include="Assets\Script\UI\BGM.cs" />
+     <Compile Include="Assets\Script\UI\BlinkText.cs" />
      <Compile Include="Assets\Script\UI\CharacterName.cs" />
      <Compile Include="Assets\Script\UI\ContinueNum.cs" />
      <Compile Include="Assets\Script\UI\DisplayCharacter.cs" />

@@ -19,11 +19,12 @@ public class MoveJump : MonoBehaviour, IEnemyMoveOption
     {
         if (sr.isVisible)
         {
+            jumpTimer += Time.deltaTime;
             if (groundCheck.IsGround())
             {
                 if (!canJump)
                 {
-                    jumpTimer += Time.deltaTime;
+
                     if (jumpTimer > jumpInterval)
                     {
                         canJump = true;

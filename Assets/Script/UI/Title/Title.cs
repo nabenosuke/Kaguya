@@ -6,47 +6,45 @@ using UnityEngine.EventSystems;
 
 public class Title : MonoBehaviour, IMenu
 {
-  [SerializeField] private GameObject firstSelect;
-  [SerializeField] private GameObject characterSelect;
-  [SerializeField] private GameObject systemMenu;
+    [SerializeField] private GameObject firstSelect;
+    [SerializeField] private GameObject characterSelect;
+    [SerializeField] private GameObject systemMenu;
 
-  private Canvas canvas;
-  private Selectable selectable;
-  // Start is called before the first frame update
-  void Start()
-  {
-    canvas = GetComponent<Canvas>();
-    selectable = firstSelect.GetComponent<Selectable>();
-    selectable.Select();
-  }
+    private Canvas canvas;
+    private Selectable selectable;
+    // Start is called before the first frame update
+    void Start()
+    {
+        canvas = GetComponent<Canvas>();
+        selectable = firstSelect.GetComponent<Selectable>();
+        selectable.Select();
+        //Debug.Log("Start");
+    }
 
-  // Update is called once per frame
-  void Update()
-  {
+    // Update is called once per frame
 
-  }
-  void IMenu.Open()
-  {
-    canvas.enabled = true;
-    selectable.Select();
-  }
+    void IMenu.Open()
+    {
+        canvas.enabled = true;
+        selectable.Select();
+    }
 
-  void Close()
-  {
-    canvas.enabled = false;
-  }
+    void Close()
+    {
+        canvas.enabled = false;
+    }
 
-  public void OpenCharacterSelect()
-  {
-    Close();
-    //切り替えにアニメーションつけてもいいかも
-    characterSelect.GetComponent<IMenu>().Open();
-  }
+    public void OpenCharacterSelect()
+    {
+        Close();
+        //切り替えにアニメーションつけてもいいかも
+        characterSelect.GetComponent<IMenu>().Open();
+    }
 
-  public void OpenSystemMenu()
-  {
-    Close();
-    //切り替えにアニメーションつけてもいいかも
-    systemMenu.GetComponent<IMenu>().Open();
-  }
+    public void OpenSystemMenu()
+    {
+        Close();
+        //切り替えにアニメーションつけてもいいかも
+        systemMenu.GetComponent<IMenu>().Open();
+    }
 }

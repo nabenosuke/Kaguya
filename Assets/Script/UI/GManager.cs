@@ -15,15 +15,16 @@ public class GManager : MonoBehaviour
     [Header("デフォルトHP")] public int defaultHP = 3;
     [Header("輝き数")] public int kagayaki;
     [Header("ボス戦前のステージ")] public int maxStageNum = 2;
+    public int[] bossStage = new int[] { 11, 21, 31 };
     [Header("重力")] public float gravity = 20f;
     public bool isDead;
     public bool isClear;
 
-    private StageControler stageControler;
     private AudioSource audioSource = null;
     //このステージが一度初期化されたか
     [SerializeField] private bool[] isStageInitialize;
     private string[] characterNameList = new string[] { "HONOKA", "KOTORI", "UMI", "RIN", "HANAYO", "MAKI", "NIKO", "NOZOMI", "ELI" };
+
 
     private void Awake()
     {

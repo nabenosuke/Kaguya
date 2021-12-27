@@ -84,6 +84,10 @@ public class StageControler : MonoBehaviour
             GManager.instance.stageNum += 1;
             SceneManager.LoadScene("Start");
         }
+        else if (GManager.instance.stageNum == 11)
+        {
+            SceneManager.LoadScene("ED");
+        }
         else
         {
             GManager.instance.stageNum = 11;
