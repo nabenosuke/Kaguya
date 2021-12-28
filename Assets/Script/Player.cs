@@ -97,7 +97,7 @@ public class Player : MonoBehaviour, IDamage
             if (isSpin)
             {
                 spinTimer += Time.deltaTime;
-                if (spinTimer > spinTime)
+                if (spinTimer > spinTime || Input.GetButtonDown("Jump"))
                 {
                     isSpin = false;
                     spinTimer = 0f;
@@ -109,6 +109,10 @@ public class Player : MonoBehaviour, IDamage
             if (Input.GetButtonDown("Jump"))
             {
                 isGetDownUp = true;
+            }
+            else if (Input.GetButtonUp("Jump"))
+            {
+                isGetDownUp = false;
             }
 
             //被弾時点滅
@@ -150,11 +154,13 @@ public class Player : MonoBehaviour, IDamage
         {
             sr.enabled = true;
         }
+        /*
         else if (GManager.instance.isClear)
         {
             isJump = true;
             isSpin = false;
         }
+        */
     }
     void FixedUpdate()
     {

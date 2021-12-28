@@ -959,8 +959,8 @@ GameObject:
   - component: {fileID: 8275704706581979981}
   - component: {fileID: 8275704706581979982}
   - component: {fileID: 8275704706581979983}
-  - component: {fileID: 8275704706581979968}
   - component: {fileID: 8275704706581979969}
+  - component: {fileID: 6450542867658676377}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -976,7 +976,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8275704706581979971}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.7, y: 2.94, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 8275704707590848999}
@@ -1069,22 +1069,6 @@ MonoBehaviour:
   defaultRunAnimSpeed: 0.5
   jumpPower: 14
   attackInterval: 0
---- !u!70 &8275704706581979968
-CapsuleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8275704706581979971}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 1.28, y: 1.28}
-  m_Direction: 0
 --- !u!50 &8275704706581979969
 Rigidbody2D:
   serializedVersion: 4
@@ -1106,6 +1090,32 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!61 &6450542867658676377
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8275704706581979971}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 6200000, guid: 6cf3090953ec0c3439f6f66202adb6b0, type: 2}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1.28, y: 1.28}
+    newSize: {x: 1.28, y: 1.28}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1.28, y: 1.28}
+  m_EdgeRadius: 0
 --- !u!1 &8275704707590848984
 GameObject:
   m_ObjectHideFlags: 0
@@ -1162,7 +1172,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 0.03}
+  m_Size: {x: 1.05, y: 0.03}
   m_EdgeRadius: 0
 --- !u!114 &8275704707590848997
 MonoBehaviour:
