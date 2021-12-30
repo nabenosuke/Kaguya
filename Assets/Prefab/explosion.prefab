@@ -159,4 +159,6 @@ MonoBehaviour:
   attackEffect: {fileID: 0}
   isIgnoreEnemy: 1
   isIgnoreGround: 1
-  se: {fileID: 8300000, guid: 732ff68218eeac544ae771a2bffb5040, type: 3}
+  attackScale: 1
+  scale: 1
+  se: {fileID: 8300000, guid: 138f90ec621375448b5ad0de9d559351, type: 3}

@@ -12,6 +12,7 @@ public class Player : MonoBehaviour, IDamage
 
     #region //プライベート変数
     [SerializeField] private AudioClip jumpSE = null;
+    [SerializeField] private AudioClip damageSE = null;
     private Animator anim = null;
     private Rigidbody2D rb = null;
     private CapsuleCollider2D capcol = null;
@@ -30,14 +31,20 @@ public class Player : MonoBehaviour, IDamage
     private float dashTime = 0.0f;
     private float beforeKey = 0.0f;
     private float attackTimer = 0.0f;
-    private float blinkTime = 0.0f;
-    private float damageTime = 0.0f;
+    private float blinkTimer = 0.0f;
+    private float damageTimer = 0.0f;
+    private float jumpTimer = 0.0f;
+    [SerializeField] private float jumpTime = 0.1f;
     private float gravity;
+    private float fallSpeed;
     private bool isRun = false;
     private bool isGround = false;
     private bool wasGround = false;
+    [SerializeField] private bool isGetUp = false;
     private bool isGetDownUp = false;
     private bool isJump = false;
+    private bool isFly = false;
+    private bool isJumpEnd = false;
     private bool isAttack = false;
     private bool isDamage = false;
     private bool isDead = false;
@@ -67,6 +74,7 @@ public class Player : MonoBehaviour, IDamage
     {
         transform.position = GManager.instance.startPos;
         this.gravity = GManager.instance.gravity;
+        this.fallSpeed = GManager.instance.fallSpeed;
     }
 
     void Update()
@@ -97,6 +105,7 @@ public class Player : MonoBehaviour, IDamage
             if (isSpin)
             {
                 spinTimer += Time.deltaTime;
+                //スピン解除
                 if (spinTimer > spinTime || Input.GetButtonDown("Jump"))
                 {
                     isSpin = false;
@@ -109,23 +118,25 @@ public class Player : MonoBehaviour, IDamage
             if (Input.GetButtonDown("Jump"))
             {
                 isGetDownUp = true;
+                isGetUp = true;
             }
             else if (Input.GetButtonUp("Jump"))
             {
                 isGetDownUp = false;
+                isGetUp = false;
             }
 
             //被弾時点滅
             else if (isDamage)
             {
                 //明滅　ついている時に戻る
-                if (blinkTime > 0.2f)
+                if (blinkTimer > 0.2f)
                 {
                     sr.enabled = true;
-                    blinkTime = 0.0f;
+                    blinkTimer = 0.0f;
                 }
                 //明滅　消えているとき
-                else if (blinkTime > 0.1f)
+                else if (blinkTimer > 0.1f)
                 {
                     sr.enabled = false;
                 }
@@ -136,17 +147,17 @@ public class Player : MonoBehaviour, IDamage
                 }
 
                 //2秒たったら明滅終わり
-                if (damageTime > 2.0f)
+                if (damageTimer > 2.0f)
                 {
                     isDamage = false;
-                    blinkTime = 0f;
-                    damageTime = 0f;
+                    blinkTimer = 0f;
+                    damageTimer = 0f;
                     sr.enabled = true;
                 }
                 else
                 {
-                    blinkTime += Time.deltaTime;
-                    damageTime += Time.deltaTime;
+                    blinkTimer += Time.deltaTime;
+                    damageTimer += Time.deltaTime;
                 }
             }
         }
@@ -236,30 +247,62 @@ public class Player : MonoBehaviour, IDamage
         float ySpeed = rb.velocity.y;
         if (isGround)
         {
+            //着地
+            if (isFly)
+            {
+                Debug.Log("着地");
+                jumpTimer = 0f;
+                isJump = false;
+                isJumpEnd = false;
+                isFly = false;
+            }
+            //地上で上
             if (isGetDownUp)
             {
                 isGetDownUp = false;
+                ySpeed = jumpPower;
                 if (!isJump)
                 {
                     GManager.instance.PlaySE(jumpSE);
-                    ySpeed += jumpPower;
                     isJump = true;
                 }
             }
             else
             {
-                isJump = false;
+
             }
 
             //にこスピン解除
+            spinTimer = 0f;
             isSpin = false;
             wasSpin = false;
         }
-
-
         else
         {
+            isFly = true;
             //空中で上
+            if (isGetUp && isJump)
+            {
+
+                if (jumpTimer < jumpTime && !isJumpEnd)
+                {
+                    jumpTimer += Time.fixedDeltaTime;
+                    ySpeed = jumpPower;
+                }
+                else
+                {
+                    if (!isJumpEnd)
+                    {
+                        isJumpEnd = true;
+                    }
+                }
+            }
+            else
+            {
+                isJumpEnd = true;
+            }
+
+            //空中でジャンプ
             if (isGetDownUp)
             {
                 isGetDownUp = false;
@@ -276,6 +319,8 @@ public class Player : MonoBehaviour, IDamage
                     }
                 }
             }
+
+
         }
 
         //にこスピン中なら落下速度減少
@@ -284,7 +329,14 @@ public class Player : MonoBehaviour, IDamage
             return -spinSpeed;
         }
 
-        ySpeed -= gravity * Time.fixedDeltaTime;
+        if (ySpeed > -fallSpeed)
+        {
+            ySpeed -= gravity * Time.fixedDeltaTime;
+        }
+        else
+        {
+            ySpeed = -fallSpeed;
+        }
         return ySpeed;
     }
 
@@ -330,6 +382,7 @@ public class Player : MonoBehaviour, IDamage
         if (!isDamage && !isDead && !GManager.instance.isClear)
         {
             isDamage = true;
+            GManager.instance.PlaySE(damageSE);
             if (GManager.instance.playerHP > damage)
             {
                 GManager.instance.playerHP -= damage;

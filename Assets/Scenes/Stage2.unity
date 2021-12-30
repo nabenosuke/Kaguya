@@ -499,7 +499,9 @@ PolygonCollider2D:
     m_Paths:
     - - {x: -17, y: 60}
       - {x: 268, y: 60}
-      - {x: 268, y: 17}
+      - {x: 268, y: 29.974682}
+      - {x: 197.00948, y: 30.500683}
+      - {x: 197.18477, y: 17}
       - {x: 163, y: 17}
       - {x: 163, y: -4}
       - {x: -17, y: -4}
@@ -16859,7 +16861,7 @@ Camera:
   far clip plane: 5000
   field of view: 40
   orthographic: 1
-  orthographic size: 7
+  orthographic size: 8
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -16883,7 +16885,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1925640056}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.0999994, y: 6.2599998, z: -10}
+  m_LocalPosition: {x: -2.099999, y: 6.64, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -17719,12 +17721,12 @@ PrefabInstance:
     - target: {fileID: 895923379219059261, guid: b404dd9398148bb4cad5f880fb241446,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.0999994
+      value: -2.099999
       objectReference: {fileID: 0}
     - target: {fileID: 895923379219059261, guid: b404dd9398148bb4cad5f880fb241446,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 6.2599998
+      value: 6.64
       objectReference: {fileID: 0}
     - target: {fileID: 895923379219059261, guid: b404dd9398148bb4cad5f880fb241446,
         type: 3}

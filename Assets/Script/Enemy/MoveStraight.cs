@@ -13,7 +13,8 @@ public class MoveStraight : MonoBehaviour, IEnemyMove
     private Vector2 velocity = Vector2.zero;
     private Rigidbody2D rb = null;
     private SpriteRenderer sr = null;
-    private float gravity = 0f;
+    private float gravity;
+    private float fallSpeed;
     private int rightNum = 1;
     private bool isGround;
     // Start is called before the first frame update
@@ -33,6 +34,7 @@ public class MoveStraight : MonoBehaviour, IEnemyMove
         if (isGravity)
         {
             gravity = GManager.instance.gravity;
+            fallSpeed = -GManager.instance.fallSpeed;
         }
     }
 
@@ -50,6 +52,10 @@ public class MoveStraight : MonoBehaviour, IEnemyMove
             if (iEnemyMoveOption != null)
             {
                 rb.velocity += iEnemyMoveOption.OptionVelocity();
+            }
+            if (rb.velocity.y < fallSpeed)
+            {
+                rb.velocity = new Vector2(rb.velocity.x, fallSpeed);
             }
         }
         else

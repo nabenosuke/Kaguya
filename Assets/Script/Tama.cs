@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Tama : MonoBehaviour
 {
-    [SerializeField] private GameObject explosion;
     [Header("スピード")] public float speed = 15.0f;
     [Header("高度")] public float height = 15.0f;
     [Header("向き")] public float left1right_1 = 1;

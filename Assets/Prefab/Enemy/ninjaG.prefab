@@ -159,7 +159,7 @@ GameObject:
   - component: {fileID: 247284219324922680}
   - component: {fileID: 247284219324922681}
   - component: {fileID: 247284219324922682}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: ninjaG
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -318,7 +318,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   groundCheck: {fileID: 247284217976142433}
-  jumpPower: 9
+  jumpPower: 12
   jumpInterval: 2
 --- !u!70 &247284219324922681
 CapsuleCollider2D:
@@ -330,7 +330,7 @@ CapsuleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}

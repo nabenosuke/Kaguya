@@ -57,7 +57,8 @@ MonoBehaviour:
   kagayaki: 0
   maxStageNum: 2
   bossStage: 0b000000150000001f000000
-  gravity: 20
+  gravity: 40
+  fallSpeed: 14
   isDead: 0
   isClear: 0
   isStageInitialize: 

@@ -17,6 +17,7 @@ public class GManager : MonoBehaviour
     [Header("ボス戦前のステージ")] public int maxStageNum = 2;
     public int[] bossStage = new int[] { 11, 21, 31 };
     [Header("重力")] public float gravity = 20f;
+    [Header("最速落下速度")] public float fallSpeed = 20f;
     public bool isDead;
     public bool isClear;
 
