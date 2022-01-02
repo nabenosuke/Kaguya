@@ -56,6 +56,8 @@ public class GManager : MonoBehaviour
               Debug.Log("非ステージ");
             }
             */
+        //フレームレートを60に
+        Application.targetFrameRate = 60;
     }
 
 

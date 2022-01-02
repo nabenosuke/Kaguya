@@ -46,7 +46,7 @@ public class Boss : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         if (transform.position.x > 0)
         {
@@ -89,7 +89,7 @@ public class Boss : MonoBehaviour
         if (Vector2.Distance(transform.position, nextPosition) > 0.1f)
         {
             //現在地から次のポイントへのベクトルを作成し次のポイントへ移動
-            rb.MovePosition(Vector2.MoveTowards(transform.position, nextPosition, speed * Time.deltaTime));
+            rb.MovePosition(Vector2.MoveTowards(transform.position, nextPosition, speed * Time.fixedDeltaTime));
         }
         //指定位置に到着
         else
