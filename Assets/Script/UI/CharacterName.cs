@@ -18,7 +18,7 @@ public class CharacterName : MonoBehaviour
         }
         else
         {
-            Debug.Log("ゲームマネージャー置き忘れてるよ！");
+            Debug.Log("ゲームマネージャー置き忘れてるよ");
             Destroy(this);
         }
     }

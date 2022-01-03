@@ -29,6 +29,7 @@ public class CharacterSelect : MonoBehaviour, ISubMenu
     // Update is called once per frame
     void Update()
     {
+        //Debug.Log(animator.GetCurrentAnimatorStateInfo(0).IsName("Nico"));
     }
 
     public void PointerEnter()
@@ -68,7 +69,7 @@ public class CharacterSelect : MonoBehaviour, ISubMenu
                 break;
         }
         //animator.SetInteger("CharacterID", characterID);
-        Debug.Log("選択中");
+        //Debug.Log("選択中");
     }
     public void PointerExit()
     {

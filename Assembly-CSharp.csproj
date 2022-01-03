@@ -76,6 +76,7 @@
      <Compile Include="Assets\Script\UI\HPNum.cs" />
      <Compile Include="Assets\Script\UI\IgnoreMouseInputModule.cs" />
      <Compile Include="Assets\Script\UI\KagayakiNum.cs" />
+     <Compile Include="Assets\Script\UI\SelectionRestrictor.cs" />
      <Compile Include="Assets\Script\UI\StageControler.cs" />
      <Compile Include="Assets\Script\UI\StageNum.cs" />
      <Compile Include="Assets\Script\UI\StageStart.cs" />
