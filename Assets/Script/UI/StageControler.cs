@@ -10,6 +10,7 @@ public class StageControler : MonoBehaviour
 
     [SerializeField] private AudioClip missBGM;
     private BGM bgm;
+    [SerializeField] private GameObject[] CheckPoints;
     private Player player;
     private float goStartSceneTime_dead = 4f;
     private float goStartSceneTime_clear = 6f;
@@ -26,10 +27,7 @@ public class StageControler : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (GManager.instance.InitializeCheck())
-        {
-            GManager.instance.startPos = GameObject.Find("StartPos").transform.position;
-        }
+        GManager.instance.startPos = CheckPoints[GManager.instance.continuePointNum].transform.position;
         GManager.instance.InitializeStage();
         GManager.instance.stageNum = stage;
         bgm = GameObject.Find("BGM").GetComponent<BGM>();
@@ -62,6 +60,7 @@ public class StageControler : MonoBehaviour
         }
     }
 
+    //1回ミス
     private void MissStage()
     {
         GManager.instance.continueNum -= 1;
@@ -77,8 +76,10 @@ public class StageControler : MonoBehaviour
         }
     }
 
+    //ステージクリア
     private void ClearStage()
     {
+        GManager.instance.continuePointNum = 0;
         if (GManager.instance.stageNum < GManager.instance.maxStageNum)
         {
             GManager.instance.stageNum += 1;

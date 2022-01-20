@@ -2414,6 +2414,16 @@ PrefabInstance:
       propertyPath: stage
       value: 11
       objectReference: {fileID: 0}
+    - target: {fileID: 8896614442570801417, guid: bbb6ff7cb1dc2934582aa6f25bf75b92,
+        type: 3}
+      propertyPath: CheckPoints.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8896614442570801417, guid: bbb6ff7cb1dc2934582aa6f25bf75b92,
+        type: 3}
+      propertyPath: CheckPoints.Array.data[0]
+      value: 
+      objectReference: {fileID: 1767169785}
     - target: {fileID: 8896614442570801422, guid: bbb6ff7cb1dc2934582aa6f25bf75b92,
         type: 3}
       propertyPath: m_Name
@@ -3081,6 +3091,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7102ada4ab882304e87c1083c241442f, type: 3}
+--- !u!1 &1767169785 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8693819387536254350, guid: 7102ada4ab882304e87c1083c241442f,
+    type: 3}
+  m_PrefabInstance: {fileID: 1767169784}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1828151694
 GameObject:
   m_ObjectHideFlags: 0

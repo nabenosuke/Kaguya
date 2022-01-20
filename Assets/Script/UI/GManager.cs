@@ -15,6 +15,8 @@ public class GManager : MonoBehaviour
     [Header("デフォルトHP")] public int defaultHP = 3;
     [Header("輝き数")] public int kagayaki;
     [Header("ボス戦前のステージ")] public int maxStageNum = 2;
+    [Header("コンテニュー番号")] public int continuePointNum = 0;
+    [Header("スコア")] public int score = 0;
     public int[] bossStage = new int[] { 11, 21, 31 };
     [Header("重力")] public float gravity = 20f;
     [Header("最速落下速度")] public float fallSpeed = 20f;
@@ -62,6 +64,7 @@ public class GManager : MonoBehaviour
 
 
     //ステージ初期化チェック。未初期化なら真を返す
+    /*
     public bool InitializeCheck()
     {
         if (isStageInitialize[stageNum])
@@ -74,14 +77,16 @@ public class GManager : MonoBehaviour
             return true;
         }
     }
+    */
 
+    //ステージ開始時処理
     public void InitializeStage()
     {
         isClear = false;
         isDead = false;
-
     }
 
+    //タイトルに戻る時の初期化
     public void InitializeGame()
     {
         isClear = false;
@@ -90,12 +95,16 @@ public class GManager : MonoBehaviour
         continueNum = defaultContinueNum;
         kagayaki = 0;
         playerHP = defaultHP;
+        continuePointNum = 0;
+        /*
         for (int i = 0; i < 33; i++)
         {
             isStageInitialize[i] = false;
         }
+        */
     }
 
+    //SEを再生
     public void PlaySE(AudioClip audioClip)
     {
         if (!GManager.instance.isClear)

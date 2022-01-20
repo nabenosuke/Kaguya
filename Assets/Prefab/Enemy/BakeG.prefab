@@ -173,8 +173,11 @@ MonoBehaviour:
   attack: 1
   hp: 1
   isRight: 0
+  isArmor: 0
   hitSE: {fileID: 8300000, guid: 3e6131c7ab9a25e4bb46db2b0b43bb11, type: 3}
   deathSE: {fileID: 8300000, guid: 7da2c4cba41f60f4b937075fad8b8f3e, type: 3}
   deathImage: {fileID: 6662950840967763163, guid: aa1156f8a66675f489e8d0f75386ea07,
     type: 3}
   hpGauge: {fileID: 0}
+  score: 300
+  isBoos: 0

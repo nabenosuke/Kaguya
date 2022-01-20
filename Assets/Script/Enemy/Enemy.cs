@@ -16,6 +16,7 @@ public class Enemy : MonoBehaviour, IDamage
     [SerializeField] GameObject deathImage;
     #region//ボスのみ
     [SerializeField] Slider hpGauge;
+    [Header("スコア")] [SerializeField] private int score;
     [SerializeField] bool isBoos;
     private int maxHP;
     #endregion
@@ -37,6 +38,10 @@ public class Enemy : MonoBehaviour, IDamage
             maxHP = hp;
         }
 
+        if (score == 0)
+        {
+            Debug.Log("Scoreを設定し忘れてる敵あり");
+        }
         //this.gravity = GManager.instance.gravity;
     }
 
@@ -61,6 +66,7 @@ public class Enemy : MonoBehaviour, IDamage
                 //撃破
                 if (hp <= 0)
                 {
+                    GManager.instance.score += this.score;
                     GManager.instance.PlaySE(deathSE);
                     if (isBoos) GetComponent<IBoss>().Defeated();
                     //撃破画像
