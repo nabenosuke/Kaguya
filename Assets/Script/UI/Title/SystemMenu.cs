@@ -21,15 +21,16 @@ public class SystemMenu : MonoBehaviour, ISubMenu
 
     public void Initialize()
     {
+        foreach (var page in systemPages)
+        {
+            page.SetActive(false);
+        }
         currentPage = 0;
         UpdatePage();
     }
 
     // Update is called once per frame
-    void Update()
-    {
 
-    }
 
     void UpdatePage()
     {

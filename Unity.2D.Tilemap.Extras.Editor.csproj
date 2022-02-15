@@ -55,31 +55,30 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="C:\Users\なべのすけ\Desktop\2d-extras-master\Editor\Brushes\CoordinateBrush\CoordinateBrush.cs" />
-     <Compile Include="C:\Users\なべのすけ\Desktop\2d-extras-master\Editor\Brushes\GameObjectBrush\GameObjectBrush.cs" />
-     <Compile Include="C:\Users\なべのすけ\Desktop\2d-extras-master\Editor\Brushes\GroupBrush\GroupBrush.cs" />
-     <Compile Include="C:\Users\なべのすけ\Desktop\2d-extras-master\Editor\Brushes\LineBrush\LineBrush.cs" />
-     <Compile Include="C:\Users\なべのすけ\Desktop\2d-extras-master\Editor\Brushes\PrefabBrushes\BasePrefabBrush.cs" />
-     <Compile Include="C:\Users\なべのすけ\Desktop\2d-extras-master\Editor\Brushes\PrefabBrushes\BrushMenuItem.cs" />
-     <Compile Include="C:\Users\なべのすけ\Desktop\2d-extras-master\Editor\Brushes\PrefabBrushes\PrefabBrush\PrefabBrush.cs" />
-     <Compile Include="C:\Users\なべのすけ\Desktop\2d-extras-master\Editor\Brushes\PrefabBrushes\PrefabRandomBrush\PrefabRandomBrush.cs" />
-     <Compile Include="C:\Users\なべのすけ\Desktop\2d-extras-master\Editor\Brushes\RandomBrush\RandomBrush.cs" />
-     <Compile Include="C:\Users\なべのすけ\Desktop\2d-extras-master\Editor\Brushes\TintBrush\TintBrush.cs" />
-     <Compile Include="C:\Users\なべのすけ\Desktop\2d-extras-master\Editor\Brushes\TintBrushSmooth\TintBrushSmooth.cs" />
-     <Compile Include="C:\Users\なべのすけ\Desktop\2d-extras-master\Editor\Brushes\TintBrushSmooth\TintTextureGeneratorEditor.cs" />
-     <Compile Include="C:\Users\なべのすけ\Desktop\2d-extras-master\Editor\Menu\CustomRuleTileMenu.cs" />
-     <Compile Include="C:\Users\なべのすけ\Desktop\2d-extras-master\Editor\Menu\MenuItemOrder.cs" />
-     <Compile Include="C:\Users\なべのすけ\Desktop\2d-extras-master\Editor\Tiles\HexagonalRuleTile\HexagonalRuleTileEditor.cs" />
-     <Compile Include="C:\Users\なべのすけ\Desktop\2d-extras-master\Editor\Tiles\IsometricRuleTile\IsometricRuleTileEditor.cs" />
-     <Compile Include="C:\Users\なべのすけ\Desktop\2d-extras-master\Editor\Tiles\Menu\PipelineTileMenu.cs" />
-     <Compile Include="C:\Users\なべのすけ\Desktop\2d-extras-master\Editor\Tiles\Menu\RandomTileMenu.cs" />
-     <Compile Include="C:\Users\なべのすけ\Desktop\2d-extras-master\Editor\Tiles\Menu\TerrainTileMenu.cs" />
-     <Compile Include="C:\Users\なべのすけ\Desktop\2d-extras-master\Editor\Tiles\Menu\WeightedRandomTileMenu.cs" />
-     <Compile Include="C:\Users\なべのすけ\Desktop\2d-extras-master\Editor\Tiles\RuleOverrideTile\AdvancedRuleOverrideTileEditor.cs" />
-     <Compile Include="C:\Users\なべのすけ\Desktop\2d-extras-master\Editor\Tiles\RuleOverrideTile\PopulateRuleOverrideTileWizard.cs" />
-     <Compile Include="C:\Users\なべのすけ\Desktop\2d-extras-master\Editor\Tiles\RuleOverrideTile\RuleOverrideTileEditor.cs" />
-     <Compile Include="C:\Users\なべのすけ\Desktop\2d-extras-master\Editor\Tiles\RuleTile\RuleTileEditor.cs" />
-     <None Include="C:\Users\なべのすけ\Desktop\2d-extras-master\Editor\Unity.2D.Tilemap.Extras.Editor.asmdef" />
+     <Compile Include="C:\Users\なべのすけ\Desktop\2d-extras-2019.4\Editor\Brushes\CoordinateBrush\CoordinateBrush.cs" />
+     <Compile Include="C:\Users\なべのすけ\Desktop\2d-extras-2019.4\Editor\Brushes\GameObjectBrush\GameObjectBrush.cs" />
+     <Compile Include="C:\Users\なべのすけ\Desktop\2d-extras-2019.4\Editor\Brushes\GroupBrush\GroupBrush.cs" />
+     <Compile Include="C:\Users\なべのすけ\Desktop\2d-extras-2019.4\Editor\Brushes\LineBrush\LineBrush.cs" />
+     <Compile Include="C:\Users\なべのすけ\Desktop\2d-extras-2019.4\Editor\Brushes\PrefabBrushes\BasePrefabBrush.cs" />
+     <Compile Include="C:\Users\なべのすけ\Desktop\2d-extras-2019.4\Editor\Brushes\PrefabBrushes\BrushMenuItem.cs" />
+     <Compile Include="C:\Users\なべのすけ\Desktop\2d-extras-2019.4\Editor\Brushes\PrefabBrushes\PrefabBrush\PrefabBrush.cs" />
+     <Compile Include="C:\Users\なべのすけ\Desktop\2d-extras-2019.4\Editor\Brushes\PrefabBrushes\PrefabRandomBrush\PrefabRandomBrush.cs" />
+     <Compile Include="C:\Users\なべのすけ\Desktop\2d-extras-2019.4\Editor\Brushes\RandomBrush\RandomBrush.cs" />
+     <Compile Include="C:\Users\なべのすけ\Desktop\2d-extras-2019.4\Editor\Brushes\TintBrush\TintBrush.cs" />
+     <Compile Include="C:\Users\なべのすけ\Desktop\2d-extras-2019.4\Editor\Brushes\TintBrushSmooth\TintBrushSmooth.cs" />
+     <Compile Include="C:\Users\なべのすけ\Desktop\2d-extras-2019.4\Editor\Menu\CustomRuleTileMenu.cs" />
+     <Compile Include="C:\Users\なべのすけ\Desktop\2d-extras-2019.4\Editor\Menu\MenuItemOrder.cs" />
+     <Compile Include="C:\Users\なべのすけ\Desktop\2d-extras-2019.4\Editor\Tiles\HexagonalRuleTile\HexagonalRuleTileEditor.cs" />
+     <Compile Include="C:\Users\なべのすけ\Desktop\2d-extras-2019.4\Editor\Tiles\IsometricRuleTile\IsometricRuleTileEditor.cs" />
+     <Compile Include="C:\Users\なべのすけ\Desktop\2d-extras-2019.4\Editor\Tiles\Menu\PipelineTileMenu.cs" />
+     <Compile Include="C:\Users\なべのすけ\Desktop\2d-extras-2019.4\Editor\Tiles\Menu\RandomTileMenu.cs" />
+     <Compile Include="C:\Users\なべのすけ\Desktop\2d-extras-2019.4\Editor\Tiles\Menu\TerrainTileMenu.cs" />
+     <Compile Include="C:\Users\なべのすけ\Desktop\2d-extras-2019.4\Editor\Tiles\Menu\WeightedRandomTileMenu.cs" />
+     <Compile Include="C:\Users\なべのすけ\Desktop\2d-extras-2019.4\Editor\Tiles\RuleOverrideTile\AdvancedRuleOverrideTileEditor.cs" />
+     <Compile Include="C:\Users\なべのすけ\Desktop\2d-extras-2019.4\Editor\Tiles\RuleOverrideTile\PopulateRuleOverrideTileWizard.cs" />
+     <Compile Include="C:\Users\なべのすけ\Desktop\2d-extras-2019.4\Editor\Tiles\RuleOverrideTile\RuleOverrideTileEditor.cs" />
+     <Compile Include="C:\Users\なべのすけ\Desktop\2d-extras-2019.4\Editor\Tiles\RuleTile\RuleTileEditor.cs" />
+     <None Include="C:\Users\なべのすけ\Desktop\2d-extras-2019.4\Editor\Unity.2D.Tilemap.Extras.Editor.asmdef" />
  <Reference Include="UnityEngine">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2019.4.26f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
  </Reference>

@@ -23,8 +23,10 @@ public class GManager : MonoBehaviour
 
     private AudioSource audioSource = null;
     //このステージが一度初期化されたか
-    [SerializeField] private bool[] isStageInitialize;
+    //[SerializeField] private bool[] isStageInitialize;
     private string[] characterNameList = new string[] { "HONOKA", "KOTORI", "UMI", "RIN", "HANAYO", "MAKI", "NIKO", "NOZOMI", "ELI" };
+    //各キャラの武器。クナイ、手裏剣、爆弾
+    public int[] weponIDList = new int[] { 2, 0, 0, 0, 0, 0, 1, 0, 0, 0 };
 
 
     private void Awake()
@@ -43,7 +45,7 @@ public class GManager : MonoBehaviour
         }
 
         playerHP = defaultHP;
-        isStageInitialize = new bool[33];
+        //isStageInitialize = new bool[33];
         audioSource = GetComponent<AudioSource>();
         /*
             stageControler = GameObject.Find("StageController").GetComponent<StageControler>();
@@ -90,6 +92,12 @@ public class GManager : MonoBehaviour
         continueNum = defaultContinueNum;
         kagayaki = 0;
         playerHP = defaultHP;
+<<<<<<< Updated upstream
+=======
+        continuePointNum = 0;
+        score = 0;
+        /*
+>>>>>>> Stashed changes
         for (int i = 0; i < 33; i++)
         {
             isStageInitialize[i] = false;

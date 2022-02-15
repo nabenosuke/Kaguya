@@ -7,18 +7,19 @@ using UnityEngine.SceneManagement;
 
 public class CharacterSelect : MonoBehaviour, ISubMenu
 {
-    [SerializeField] private GameObject characterIcon;
+    [SerializeField] private GameObject characterIcons;
     [SerializeField] private GameObject gameStart;
     [SerializeField] private int characterID;
-    private Animator animator;
+
     private Selectable selectable;
+    private CharacterIcon characterIcon;
     private bool isSelected;
     private bool isPreviousSelected;
     // Start is called before the first frame update
     void Start()
     {
-        animator = characterIcon.GetComponent<Animator>();
         selectable = GetComponent<Selectable>();
+        characterIcon = characterIcons.GetComponent<CharacterIcon>();
     }
 
     public void Initialize()
@@ -33,6 +34,10 @@ public class CharacterSelect : MonoBehaviour, ISubMenu
 
     public void PointerEnter()
     {
+        //キャラアイコン変更
+        characterIcon.SetIcon(characterID);
+
+        /*
         switch (characterID)
         {
             case 1:
@@ -67,18 +72,18 @@ public class CharacterSelect : MonoBehaviour, ISubMenu
             default:
                 break;
         }
+        */
         //animator.SetInteger("CharacterID", characterID);
-        Debug.Log("選択中");
     }
     public void PointerExit()
     {
-        Debug.Log("選択解除");
+        //Debug.Log("選択解除");
     }
     public void Selected()
     {
+        characterIcon.SetAnim();
         Debug.Log("決定");
         GManager.instance.SetCharacterID(characterID);
-        animator.SetFloat("AnimSpeed", 1.0f);
         gameStart.GetComponent<GameStart>().StartGame();
         selectable.enabled = false;
     }

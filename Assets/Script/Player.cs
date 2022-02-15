@@ -420,21 +420,19 @@ public class Player : MonoBehaviour, IDamage
         //キャラ毎のステータス設定
         speed = defaultSpeed;
         runAnimSpeed = defaultRunAnimSpeed;
+        attackObj = attackObjs[GManager.instance.weponIDList[characterID - 1]];
         switch (charaID)
         {
             //ほのか 球
             case 1:
-                attackObj = attackObjs[2];
                 break;
             //りん クナイ
             case 4:
                 speed = defaultSpeed * 1.2f;
                 runAnimSpeed = defaultRunAnimSpeed * 1.2f;
-                attackObj = attackObjs[0];
                 break;
             //にこ 手裏剣
             case 7:
-                attackObj = attackObjs[1];
                 break;
             default:
                 break;
