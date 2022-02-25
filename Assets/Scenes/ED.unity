@@ -1419,7 +1419,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1645542944}
   m_CullTransparentMesh: 0
-<<<<<<< HEAD
 --- !u!114 &1645542948
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1429,12 +1428,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 1645542944}
   m_Enabled: 1
   m_EditorHideFlags: 0
-<<<<<<< Updated upstream
-  m_Script: {fileID: 11500000, guid: 091bd516caa2745419ba456ea68bc003, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  blinkPeriod: 3
-=======
   m_Script: {fileID: 11500000, guid: fa5fc3af75173d94ea6a9c57c4bb7b2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
@@ -1512,9 +1505,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1653948895}
   m_CullTransparentMesh: 0
->>>>>>> Stashed changes
-=======
->>>>>>> ver0.2
 --- !u!1 &1656628626
 GameObject:
   m_ObjectHideFlags: 0
