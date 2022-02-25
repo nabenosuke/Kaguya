@@ -97,22 +97,9 @@ public class GManager : MonoBehaviour
         continueNum = defaultContinueNum;
         kagayaki = 0;
         playerHP = defaultHP;
-<<<<<<< HEAD
-<<<<<<< Updated upstream
-=======
         continuePointNum = 0;
         score = 0;
-        /*
->>>>>>> Stashed changes
-=======
-        continuePointNum = 0;
-        /*
->>>>>>> ver0.2
-        for (int i = 0; i < 33; i++)
-        {
-            isStageInitialize[i] = false;
-        }
-        */
+
     }
 
     //SEを再生
