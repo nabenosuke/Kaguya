@@ -1067,14 +1067,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49a5bcc35b44f414396d516931f57db5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-<<<<<<< HEAD
-<<<<<<< Updated upstream
-=======
-  stageNumText: {fileID: 1482219903}
->>>>>>> Stashed changes
-=======
   stageNumText: {fileID: 0}
->>>>>>> ver0.2
 --- !u!1 &1388054544
 GameObject:
   m_ObjectHideFlags: 0
@@ -1165,10 +1158,7 @@ GameObject:
   - component: {fileID: 1482219901}
   - component: {fileID: 1482219904}
   - component: {fileID: 1482219903}
-<<<<<<< HEAD
-=======
   - component: {fileID: 1482219902}
->>>>>>> ver0.2
   m_Layer: 5
   m_Name: StageNum
   m_TagString: Untagged
@@ -1195,8 +1185,6 @@ RectTransform:
   m_AnchoredPosition: {x: 190.7, y: 6.2}
   m_SizeDelta: {x: 250, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
-<<<<<<< HEAD
-=======
 --- !u!114 &1482219902
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1210,7 +1198,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stageNumText: {fileID: 0}
->>>>>>> ver0.2
 --- !u!114 &1482219903
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1252,10 +1239,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1482219900}
   m_CullTransparentMesh: 0
-<<<<<<< HEAD
->>>>>>> Stashed changes
-=======
->>>>>>> ver0.2
 --- !u!1 &1631973005
 GameObject:
   m_ObjectHideFlags: 0
