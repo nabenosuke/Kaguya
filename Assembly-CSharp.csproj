@@ -38,7 +38,6 @@
   <ItemGroup>
      <Compile Include="Assets\Script\AttackObject.cs" />
      <Compile Include="Assets\Script\Blink.cs" />
-     <Compile Include="Assets\Script\ClearItem.cs" />
      <Compile Include="Assets\Script\DamageObject.cs" />
      <Compile Include="Assets\Script\DelayDestroy.cs" />
      <Compile Include="Assets\Script\Enemy\BakeG.cs" />
@@ -59,7 +58,11 @@
      <Compile Include="Assets\Script\Enemy\Tsubasa.cs" />
      <Compile Include="Assets\Script\GroundCheck.cs" />
      <Compile Include="Assets\Script\IDamage.cs" />
-     <Compile Include="Assets\Script\Item.cs" />
+     <Compile Include="Assets\Script\Item\CheckPoint.cs" />
+     <Compile Include="Assets\Script\Item\ClearItem.cs" />
+     <Compile Include="Assets\Script\Item\IItem.cs" />
+     <Compile Include="Assets\Script\Item\Kagayaki.cs" />
+     <Compile Include="Assets\Script\Item\PlayerTriggerCheck.cs" />
      <Compile Include="Assets\Script\Kunai.cs" />
      <Compile Include="Assets\Script\ObjectCollisionCheck.cs" />
      <Compile Include="Assets\Script\Player.cs" />
@@ -76,6 +79,7 @@
      <Compile Include="Assets\Script\UI\HPNum.cs" />
      <Compile Include="Assets\Script\UI\IgnoreMouseInputModule.cs" />
      <Compile Include="Assets\Script\UI\KagayakiNum.cs" />
+     <Compile Include="Assets\Script\UI\Score.cs" />
      <Compile Include="Assets\Script\UI\StageControler.cs" />
      <Compile Include="Assets\Script\UI\StageNum.cs" />
      <Compile Include="Assets\Script\UI\StageStart.cs" />

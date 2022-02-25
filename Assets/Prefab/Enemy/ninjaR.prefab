@@ -200,6 +200,7 @@ MonoBehaviour:
   deathImage: {fileID: 6662950840967763163, guid: aa1156f8a66675f489e8d0f75386ea07,
     type: 3}
   hpGauge: {fileID: 0}
+  score: 300
   isBoos: 0
 --- !u!50 &2128278381054646082
 Rigidbody2D:

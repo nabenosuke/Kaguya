@@ -250,7 +250,6 @@ public class Player : MonoBehaviour, IDamage
             //着地
             if (isFly)
             {
-                Debug.Log("着地");
                 jumpTimer = 0f;
                 isJump = false;
                 isJumpEnd = false;
@@ -379,7 +378,7 @@ public class Player : MonoBehaviour, IDamage
     //被弾
     void IDamage.damage(int damage)
     {
-        if (!isDamage && !isDead && !GManager.instance.isClear)
+        if ((damage == 99 || !isDamage) && !isDead && !GManager.instance.isClear)
         {
             isDamage = true;
             GManager.instance.PlaySE(damageSE);
