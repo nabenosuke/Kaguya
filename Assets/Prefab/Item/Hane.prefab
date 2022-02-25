@@ -283,7 +283,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-<<<<<<< Updated upstream:Assets/Prefab/Hane.prefab
 --- !u!70 &3495992276501012174
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -300,8 +299,6 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 1.28, y: 1.28}
   m_Direction: 0
-=======
->>>>>>> Stashed changes:Assets/Prefab/Item/Hane.prefab
 --- !u!114 &4274436968927600417
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -315,11 +312,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   clearBGM: {fileID: 8300000, guid: 727798a3944f32c42aa3eaf58a97ee1d, type: 3}
-<<<<<<< HEAD:Assets/Prefab/Hane.prefab
-<<<<<<< Updated upstream:Assets/Prefab/Hane.prefab
-=======
-=======
->>>>>>> ver0.2:Assets/Prefab/Item/Hane.prefab
 --- !u!1 &9203849795785213991
 GameObject:
   m_ObjectHideFlags: 0
@@ -330,10 +322,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1587965941313444866}
   - component: {fileID: 7688025206119074211}
-<<<<<<< HEAD:Assets/Prefab/Hane.prefab
   - component: {fileID: 1341677752825986361}
-=======
->>>>>>> ver0.2:Assets/Prefab/Item/Hane.prefab
   m_Layer: 0
   m_Name: Trigger
   m_TagString: Untagged
@@ -371,7 +360,6 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 1.28, y: 1.28}
   m_Direction: 0
-<<<<<<< HEAD:Assets/Prefab/Hane.prefab
 --- !u!114 &1341677752825986361
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -385,9 +373,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   item: {fileID: 1281875225198000684}
->>>>>>> Stashed changes:Assets/Prefab/Item/Hane.prefab
-=======
->>>>>>> ver0.2:Assets/Prefab/Item/Hane.prefab
 --- !u!1001 &7208667839223686119
 PrefabInstance:
   m_ObjectHideFlags: 0
