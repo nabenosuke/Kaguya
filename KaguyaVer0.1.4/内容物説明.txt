@@ -1,0 +1,30 @@
+Kaguya.exe: 実行ファイル
+Kaguya_Packege: UnityPackageファイル
+Kaguya_PV: プレイ映像
+README: 操作方法やアップデート情報
+
+Kaguya_Package内
+Assets
+|-Animation: ゲーム内で使用するアニメーション
+|-BGM: ゲームBGM,SE
+|-Font: フォント
+|-Map: マップ用データ、テクスチャ
+|-Prefab: プレハブデータ
+|-Scenes: シーン
+|-Script: 汎用的なスクリプト
+||-AttackObject: プレイヤーの攻撃に使用するスクリプト
+||-Enemy: 敵の行動や動きのスクリプト
+||-Item: スコアアイテムやチェックポイント等、プレイヤーが触れたときに動作するもののスクリプト
+||-UI: 画面に表示されるUIや、ゲーム全体を動かすゲームマネージャー等のスクリプト
+|||-Title: タイトル画面のスクリプト
+|-Texture: テクスチャー
+
+
+UnityPackageによってUnity上で動かす場合は、InputManagerにて
+Jump: up, z
+Fire1: x
+submit: z
+cancel: x
+と設定したうえで、TestScene以外のSceneをビルドに含んでください。
+また、別途CinemachinePackagesをインストールする必要がある場合があります。
+
