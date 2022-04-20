@@ -434,7 +434,7 @@ Animator:
   m_GameObject: {fileID: 322166895}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 0c85f24b354a4c143809e47d17f3af1d, type: 2}
+  m_Controller: {fileID: 0}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -535,7 +535,7 @@ Animator:
   m_GameObject: {fileID: 670937139}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 0c85f24b354a4c143809e47d17f3af1d, type: 2}
+  m_Controller: {fileID: 9100000, guid: 81101534cf1e62d49b896ac91731b1b3, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -615,7 +615,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: ecfb8250679f7024fb478d08189f827a, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8ca194bfbe88afa47916f75948eaede3, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -636,7 +636,7 @@ Animator:
   m_GameObject: {fileID: 1013650521}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 0c85f24b354a4c143809e47d17f3af1d, type: 2}
+  m_Controller: {fileID: 9100000, guid: 73938c408ae49cb48a7927ebd4c58f1e, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -1072,6 +1072,7 @@ MonoBehaviour:
   attackInterval: 0
   jumpTime: 0.2
   isGetUp: 0
+  magicSE: {fileID: 8300000, guid: e551a7e2c1f00744b8a93d8016644716, type: 3}
 --- !u!50 &8275704706581979969
 Rigidbody2D:
   serializedVersion: 4

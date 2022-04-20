@@ -18,16 +18,16 @@ public class Player : MonoBehaviour, IDamage
     private CapsuleCollider2D capcol = null;
     private SpriteRenderer sr = null;
     private GameObject characterImage;
-    [Header("キャラの画像リスト")] [SerializeField] private GameObject[] characterImages;
+    [Header("キャラの画像リスト")][SerializeField] private GameObject[] characterImages;
     private AttackObject attackObject = null;
     private int characterID = 1;
     private int number;//確立器
-    [Header("移動速度")] [SerializeField] private float defaultSpeed;
+    [Header("移動速度")][SerializeField] private float defaultSpeed;
     private float speed = 0.0f;
-    [Header("移動モーション速度")] [SerializeField] private float defaultRunAnimSpeed;
+    [Header("移動モーション速度")][SerializeField] private float defaultRunAnimSpeed;
     private float runAnimSpeed = 0.0f;
-    [Header("ジャンプした瞬間の速度")] [SerializeField] private float jumpPower;
-    [Header("攻撃間隔")] [SerializeField] private float attackInterval;
+    [Header("ジャンプした瞬間の速度")][SerializeField] private float jumpPower;
+    [Header("攻撃間隔")][SerializeField] private float attackInterval;
     private float dashTime = 0.0f;
     private float beforeKey = 0.0f;
     private float attackTimer = 0.0f;
@@ -54,12 +54,22 @@ public class Player : MonoBehaviour, IDamage
     private float attackScale = 1.5f;
     private int attackDamageScale = 2;
     private int criticalRate = 5;
+
+    //ことり
+    private float jumpPowerSecond = 17;
+    private bool isJumpSecond = false;
+
     //にこ
     private float spinSpeed = 2.0f;
     private float spinTimer = 0f;
     private float spinTime = 1.3f;
     private bool isSpin = false;
     private bool wasSpin = false;
+
+    //のぞみ
+    [Header("希の無敵音")][SerializeField] private AudioClip magicSE = null;
+    private int magicRate = 3;
+    private bool isArmor = false;
     #endregion
     // Start is called before the first frame update
     void Start()
@@ -101,6 +111,7 @@ public class Player : MonoBehaviour, IDamage
                 }
             }
 
+
             //スピンタイム
             if (isSpin)
             {
@@ -129,21 +140,24 @@ public class Player : MonoBehaviour, IDamage
             //被弾時点滅
             else if (isDamage)
             {
-                //明滅　ついている時に戻る
-                if (blinkTimer > 0.2f)
+                if (damageTimer > 0.75f)
                 {
-                    sr.enabled = true;
-                    blinkTimer = 0.0f;
-                }
-                //明滅　消えているとき
-                else if (blinkTimer > 0.1f)
-                {
-                    sr.enabled = false;
-                }
-                //明滅　ついているとき
-                else
-                {
-                    sr.enabled = true;
+                    //明滅　ついている時に戻る
+                    if (blinkTimer > 0.2f)
+                    {
+                        sr.enabled = true;
+                        blinkTimer = 0.0f;
+                    }
+                    //明滅　消えているとき
+                    else if (blinkTimer > 0.1f)
+                    {
+                        sr.enabled = false;
+                    }
+                    //明滅　ついているとき
+                    else
+                    {
+                        sr.enabled = true;
+                    }
                 }
 
                 //2秒たったら明滅終わり
@@ -271,6 +285,10 @@ public class Player : MonoBehaviour, IDamage
 
             }
 
+            //ここも着地に入れていいかも
+            //ことりジャンプ解除
+            isJumpSecond = false;
+
             //にこスピン解除
             spinTimer = 0f;
             isSpin = false;
@@ -304,7 +322,20 @@ public class Player : MonoBehaviour, IDamage
             //空中でジャンプ
             if (isGetDownUp)
             {
+                //ことりジャンプ
                 isGetDownUp = false;
+                if (characterID == 2)
+                {
+                    if (!isJumpSecond)
+                    {
+                        ySpeed = jumpPowerSecond;
+                        GManager.instance.PlaySE(jumpSE);
+                        isJumpSecond = true;
+                        anim.SetTrigger("jump_second");
+                    }
+                }
+
+
                 //にこスピン開始
                 if (characterID == 7)
                 {
@@ -345,6 +376,10 @@ public class Player : MonoBehaviour, IDamage
         anim.SetBool("ground", isGround);
         anim.SetBool("run", isRun);
         anim.SetBool("jump", isJump);
+        if (characterID == 2)
+        {
+            anim.SetBool("jump_second", isJumpSecond);
+        }
         if (characterID == 7)
         {
             anim.SetBool("spin", isSpin);
@@ -381,19 +416,35 @@ public class Player : MonoBehaviour, IDamage
         if ((damage == 99 || !isDamage) && !isDead && !GManager.instance.isClear)
         {
             isDamage = true;
-            GManager.instance.PlaySE(damageSE);
-            if (GManager.instance.playerHP > damage)
+            //のぞみ
+            isArmor = false;
+            if (characterID == 8)
             {
-                GManager.instance.playerHP -= damage;
-                anim.SetTrigger("damage");
+                number = Random.Range(0, 10);
+                //被弾無効
+                if (number < magicRate)
+                {
+                    GManager.instance.PlaySE(magicSE);
+                    isArmor = true;
+                    anim.SetTrigger("invincible");
+                }
             }
-            //死亡
-            else
+            if (!isArmor)
             {
-                GManager.instance.playerHP = 0;
-                anim.SetTrigger("dead");
-                isDead = true;
-                Debug.Log("死");
+                GManager.instance.PlaySE(damageSE);
+                if (GManager.instance.playerHP > damage)
+                {
+                    GManager.instance.playerHP -= damage;
+                    anim.SetTrigger("damage");
+                }
+                //死亡
+                else
+                {
+                    GManager.instance.playerHP = 0;
+                    anim.SetTrigger("dead");
+                    isDead = true;
+                    Debug.Log("死");
+                }
             }
         }
     }
@@ -420,10 +471,14 @@ public class Player : MonoBehaviour, IDamage
         speed = defaultSpeed;
         runAnimSpeed = defaultRunAnimSpeed;
         attackObj = attackObjs[GManager.instance.weponIDList[characterID - 1]];
+
         switch (charaID)
         {
             //ほのか 球
             case 1:
+                break;
+            //ことり
+            case 2:
                 break;
             //りん クナイ
             case 4:

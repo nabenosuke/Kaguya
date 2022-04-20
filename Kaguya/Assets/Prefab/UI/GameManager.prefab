@@ -56,12 +56,14 @@ MonoBehaviour:
   defaultHP: 5
   kagayaki: 0
   maxStageNum: 2
+  continuePointNum: 0
+  score: 0
   bossStage: 0b000000150000001f000000
   gravity: 40
   fallSpeed: 14
   isDead: 0
   isClear: 0
-  isStageInitialize: 
+  weponIDList: 020000000000000000000000000000000000000000000000010000000200000000000000
 --- !u!114 &7819455309778440965
 MonoBehaviour:
   m_ObjectHideFlags: 0

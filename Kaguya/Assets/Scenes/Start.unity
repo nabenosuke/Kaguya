@@ -208,7 +208,7 @@ GameObject:
   - component: {fileID: 195749713}
   - component: {fileID: 195749715}
   m_Layer: 5
-  m_Name: Image
+  m_Name: CharacterIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1124,7 +1124,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 8ca194bfbe88afa47916f75948eaede3, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

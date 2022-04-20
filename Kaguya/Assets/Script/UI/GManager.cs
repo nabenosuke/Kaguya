@@ -28,7 +28,7 @@ public class GManager : MonoBehaviour
     //[SerializeField] private bool[] isStageInitialize;
     private string[] characterNameList = new string[] { "HONOKA", "KOTORI", "UMI", "RIN", "HANAYO", "MAKI", "NIKO", "NOZOMI", "ELI" };
     //各キャラの武器。クナイ、手裏剣、爆弾
-    public int[] weponIDList = new int[] { 2, 0, 0, 0, 0, 0, 1, 0, 0, 0 };
+    public int[] weponIDList = new int[] { };
 
 
     private void Awake()
