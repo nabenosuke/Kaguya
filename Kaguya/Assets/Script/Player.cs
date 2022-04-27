@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour, IDamage
 {
@@ -13,6 +14,7 @@ public class Player : MonoBehaviour, IDamage
     #region //プライベート変数
     [SerializeField] private AudioClip jumpSE = null;
     [SerializeField] private AudioClip damageSE = null;
+    [SerializeField] private AudioClip subActSE = null;
     private Animator anim = null;
     private Rigidbody2D rb = null;
     private CapsuleCollider2D capcol = null;
@@ -20,6 +22,7 @@ public class Player : MonoBehaviour, IDamage
     private GameObject characterImage;
     [Header("キャラの画像リスト")][SerializeField] private GameObject[] characterImages;
     private AttackObject attackObject = null;
+    [SerializeField] private Slider subGauge = null;
     private int characterID = 1;
     private int number;//確立器
     [Header("移動速度")][SerializeField] private float defaultSpeed;
@@ -48,6 +51,8 @@ public class Player : MonoBehaviour, IDamage
     private bool isAttack = false;
     private bool isDamage = false;
     private bool isDead = false;
+    private bool isArmor = false;
+    private bool canMove = true;
 
 
     //ほのか
@@ -58,6 +63,10 @@ public class Player : MonoBehaviour, IDamage
     //ことり
     private float jumpPowerSecond = 17;
     private bool isJumpSecond = false;
+    //はなよ
+    private float hideTimer = 0f;
+    private float hideTime = 5f;
+    private bool isHide = false;
 
     //にこ
     private float spinSpeed = 2.0f;
@@ -69,7 +78,7 @@ public class Player : MonoBehaviour, IDamage
     //のぞみ
     [Header("希の無敵音")][SerializeField] private AudioClip magicSE = null;
     private int magicRate = 3;
-    private bool isArmor = false;
+    //private bool isArmor = false;
     #endregion
     // Start is called before the first frame update
     void Start()
@@ -89,56 +98,86 @@ public class Player : MonoBehaviour, IDamage
 
     void Update()
     {
+        canMove = !isHide;
         if (!isDead && !GManager.instance.isClear)
         {
-            //攻撃
-            if (Input.GetButtonDown("Fire1"))
+            if (canMove)
             {
-                if (!isAttack)
+                //攻撃
+                if (Input.GetButtonDown("Fire1"))
                 {
-                    Attack();
-                    isAttack = true;
-                    attackTimer = 0.0f;
+                    if (!isAttack)
+                    {
+                        Attack();
+                        isAttack = true;
+                        attackTimer = 0.0f;
+                    }
                 }
-            }
-            //攻撃インターバル
-            if (isAttack)
-            {
-                attackTimer += Time.deltaTime;
-                if (attackTimer > attackInterval)
+                //攻撃インターバル
+                if (isAttack)
                 {
-                    isAttack = false;
+                    attackTimer += Time.deltaTime;
+                    if (attackTimer > attackInterval)
+                    {
+                        isAttack = false;
+                    }
+                }
+
+                //スピンタイム
+                if (isSpin)
+                {
+                    spinTimer += Time.deltaTime;
+                    //スピン解除
+                    if (spinTimer > spinTime || Input.GetButtonDown("Jump"))
+                    {
+                        isSpin = false;
+                        spinTimer = 0f;
+                    }
+                }
+                wasGround = isGround;
+                isGround = ground.IsGround();
+                //ジャンプ判定
+                if (Input.GetButtonDown("Jump"))
+                {
+                    isGetDownUp = true;
+                    isGetUp = true;
+                }
+                else if (Input.GetButtonUp("Jump"))
+                {
+                    isGetDownUp = false;
+                    isGetUp = false;
                 }
             }
 
-
-            //スピンタイム
-            if (isSpin)
+            //サブ行動
+            if (Input.GetButtonDown("Fire2"))
             {
-                spinTimer += Time.deltaTime;
-                //スピン解除
-                if (spinTimer > spinTime || Input.GetButtonDown("Jump"))
+                GManager.instance.PlaySE(subActSE);
+                //はなよ
+                if (characterID == 5)
                 {
-                    isSpin = false;
-                    spinTimer = 0f;
+                    if (isGround)
+                    {
+                        if (!isHide)
+                        {
+                            anim.SetTrigger("hide");
+                            isArmor = true;
+                            isHide = true;
+                            isGetDownUp = false;
+                            isGetUp = false;
+                        }
+                        else
+                        {
+                            anim.SetTrigger("default");
+                            isArmor = false;
+                            isHide = false;
+                        }
+                    }
                 }
-            }
-            wasGround = isGround;
-            isGround = ground.IsGround();
-            //ジャンプ判定
-            if (Input.GetButtonDown("Jump"))
-            {
-                isGetDownUp = true;
-                isGetUp = true;
-            }
-            else if (Input.GetButtonUp("Jump"))
-            {
-                isGetDownUp = false;
-                isGetUp = false;
             }
 
             //被弾時点滅
-            else if (isDamage)
+            if (isDamage)
             {
                 if (damageTimer > 0.75f)
                 {
@@ -178,25 +217,65 @@ public class Player : MonoBehaviour, IDamage
         else if (GManager.instance.isClear)
         {
             sr.enabled = true;
+            isJump = true;
+            isSpin = false;
+            isJumpSecond = false;
+            SetAnimation();
         }
         /*
         else if (GManager.instance.isClear)
         {
-            isJump = true;
-            isSpin = false;
+
         }
         */
+
+
+
+        //タイマー
+        if (characterID == 5)
+        {
+            if (isHide)
+            {
+                hideTimer += Time.deltaTime;
+                if (hideTimer > hideTime)
+                {
+                    anim.SetTrigger("default");
+                    isArmor = false;
+                    isHide = false;
+                }
+            }
+            else if (!isHide)
+            {
+                if (hideTimer < 0)
+                {
+                    hideTimer = 0f;
+                }
+                else if (hideTimer > 0f)
+                {
+                    hideTimer -= Time.deltaTime;
+                }
+            }
+            subGauge.value = 1 - hideTimer / hideTime;
+        }
     }
     void FixedUpdate()
     {
         if (!isDead && !GManager.instance.isClear)
         {
-            //各座標値の速度を求める
-            float xSpeed = GetXSpeed();
-            float ySpeed = GetYSpeed();
-            SetAnimation();
+            if (canMove)
+            {
+                //各座標値の速度を求める
+                float xSpeed = GetXSpeed();
+                float ySpeed = GetYSpeed();
+                SetAnimation();
 
-            rb.velocity = new Vector2(xSpeed, ySpeed);
+                rb.velocity = new Vector2(xSpeed, ySpeed);
+            }
+            else
+            {
+                float ySpeed = GetYSpeed();
+                rb.velocity = new Vector2(0, ySpeed);
+            }
         }
         else if (GManager.instance.isClear)
         {
@@ -411,13 +490,12 @@ public class Player : MonoBehaviour, IDamage
     }
 
     //被弾
-    void IDamage.damage(int damage)
+    void IDamage.Damage(int damage)
     {
-        if ((damage == 99 || !isDamage) && !isDead && !GManager.instance.isClear)
+        if ((damage == 99 || (!isDamage && !isArmor)) && !isDead && !GManager.instance.isClear)
         {
             isDamage = true;
             //のぞみ
-            isArmor = false;
             if (characterID == 8)
             {
                 number = Random.Range(0, 10);
@@ -425,27 +503,34 @@ public class Player : MonoBehaviour, IDamage
                 if (number < magicRate)
                 {
                     GManager.instance.PlaySE(magicSE);
-                    isArmor = true;
                     anim.SetTrigger("invincible");
                 }
-            }
-            if (!isArmor)
-            {
-                GManager.instance.PlaySE(damageSE);
-                if (GManager.instance.playerHP > damage)
-                {
-                    GManager.instance.playerHP -= damage;
-                    anim.SetTrigger("damage");
-                }
-                //死亡
                 else
                 {
-                    GManager.instance.playerHP = 0;
-                    anim.SetTrigger("dead");
-                    isDead = true;
-                    Debug.Log("死");
+                    DamageProcess(damage);
                 }
             }
+            else
+            {
+                DamageProcess(damage);
+            }
+        }
+    }
+
+    void DamageProcess(int damage)
+    {
+        GManager.instance.PlaySE(damageSE);
+        if (GManager.instance.playerHP > damage)
+        {
+            GManager.instance.playerHP -= damage;
+            anim.SetTrigger("damage");
+        }
+        //死亡
+        else
+        {
+            GManager.instance.playerHP = 0;
+            anim.SetTrigger("dead");
+            isDead = true;
         }
     }
 
@@ -470,6 +555,7 @@ public class Player : MonoBehaviour, IDamage
         //キャラ毎のステータス設定
         speed = defaultSpeed;
         runAnimSpeed = defaultRunAnimSpeed;
+        subGauge.gameObject.SetActive(false);
         attackObj = attackObjs[GManager.instance.weponIDList[characterID - 1]];
 
         switch (charaID)
@@ -485,12 +571,18 @@ public class Player : MonoBehaviour, IDamage
                 speed = defaultSpeed * 1.2f;
                 runAnimSpeed = defaultRunAnimSpeed * 1.2f;
                 break;
+            //はなよ
+            case 5:
+                subGauge.gameObject.SetActive(true);
+                break;
             //にこ 手裏剣
             case 7:
                 break;
             default:
                 break;
         }
+
+
         attackInterval = attackObj.GetComponent<AttackObject>().attackInterval;
     }
 }

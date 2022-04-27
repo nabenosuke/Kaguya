@@ -8,7 +8,7 @@ public class AttackObject : MonoBehaviour
     [Header("消失時間")] public float destroyTime = 0.4f;
     [Header("攻撃力")] public int attack = 1;
     [Header("攻撃間隔")] public float attackInterval = 0.3f;
-    [Header("攻撃エフェクト")] [SerializeField] private GameObject attackEffect;
+    [Header("攻撃エフェクト")][SerializeField] private GameObject attackEffect;
     [SerializeField] public bool isIgnoreEnemy;
     [SerializeField] public bool isIgnoreGround;
     [SerializeField] private int attackScale = 1;
@@ -46,7 +46,7 @@ public class AttackObject : MonoBehaviour
             var damage = collision.gameObject.GetComponent<IDamage>();
             if (damage != null)
             {
-                damage.damage(attack);
+                damage.Damage(attack);
                 if (!isIgnoreEnemy)
                 {
                     if (attackEffect != null)

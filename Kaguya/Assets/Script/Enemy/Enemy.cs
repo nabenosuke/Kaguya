@@ -46,7 +46,7 @@ public class Enemy : MonoBehaviour, IDamage
     }
 
     //被弾
-    void IDamage.damage(int damage)
+    void IDamage.Damage(int damage)
     {
         if (!isArmor)
         {
@@ -90,7 +90,7 @@ public class Enemy : MonoBehaviour, IDamage
         if (collider.tag == "Player")
         {
             var damage = collider.gameObject.GetComponent<IDamage>();
-            damage.damage(attack);
+            damage.Damage(attack);
         }
     }
 
@@ -101,7 +101,7 @@ public class Enemy : MonoBehaviour, IDamage
         if (collider.tag == "Player")
         {
             var damage = collider.gameObject.GetComponent<IDamage>();
-            damage.damage(attack);
+            damage.Damage(attack);
         }
     }
 

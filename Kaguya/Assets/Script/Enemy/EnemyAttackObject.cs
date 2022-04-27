@@ -53,7 +53,7 @@ public class EnemyAttackObject : MonoBehaviour
         if (collider.tag == "Player")
         {
             var damage = collider.gameObject.GetComponent<IDamage>();
-            damage.damage(attack);
+            damage.Damage(attack);
             Destroy(this.gameObject);
         }
     }
