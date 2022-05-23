@@ -38,7 +38,7 @@ public class StageStart : MonoBehaviour
         }
         else
         {
-            nextStage = "Boss_Tsubasa";
+            nextStage = "Boss";
             Debug.Log("Go " + nextStage);
             SceneManager.LoadScene(nextStage);
         }

@@ -152,12 +152,12 @@ public class Player : MonoBehaviour, IDamage
             //サブ行動
             if (Input.GetButtonDown("Fire2"))
             {
-                GManager.instance.PlaySE(subActSE);
                 //はなよ
                 if (characterID == 5)
                 {
                     if (isGround)
                     {
+                        GManager.instance.PlaySE(subActSE);
                         if (!isHide)
                         {
                             anim.SetTrigger("hide");
@@ -438,14 +438,7 @@ public class Player : MonoBehaviour, IDamage
             return -spinSpeed;
         }
 
-        if (ySpeed > -fallSpeed)
-        {
-            ySpeed -= gravity * Time.fixedDeltaTime;
-        }
-        else
-        {
-            ySpeed = -fallSpeed;
-        }
+        ySpeed = ySpeed > -fallSpeed ? ySpeed - gravity * Time.fixedDeltaTime : -fallSpeed;
         return ySpeed;
     }
 

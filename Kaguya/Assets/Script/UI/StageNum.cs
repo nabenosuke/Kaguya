@@ -21,13 +21,8 @@ public class StageNum : MonoBehaviour
             }
             else
             {
-                switch (GManager.instance.stageNum)
-                {
-                    case 11:
-                        stageText.text = "vsTSUBASA";
-                        stageNumText.text = "";
-                        break;
-                }
+                stageText.text = "vs" + GManager.instance.bossNameList[(GManager.instance.characterID - 1) % 3];
+                stageNumText.text = "";
             }
         }
         else
@@ -60,4 +55,5 @@ public class StageNum : MonoBehaviour
         }
     }
     */
+
 }

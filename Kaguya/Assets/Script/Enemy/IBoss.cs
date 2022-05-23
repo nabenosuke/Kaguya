@@ -6,4 +6,5 @@ public interface IBoss
 {
     void SetAttack(int attackID);
     void Defeated();
+    Vector2 StandBy();
 }

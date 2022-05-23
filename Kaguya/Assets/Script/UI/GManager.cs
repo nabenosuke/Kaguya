@@ -28,7 +28,8 @@ public class GManager : MonoBehaviour
     //[SerializeField] private bool[] isStageInitialize;
     private string[] characterNameList = new string[] { "HONOKA", "KOTORI", "UMI", "RIN", "HANAYO", "MAKI", "NIKO", "NOZOMI", "ELI" };
     //各キャラの武器。クナイ、手裏剣、爆弾
-    public int[] weponIDList = new int[] { };
+    public int[] weponIDList = new int[] { 2, 0, 1, 0, 1, 2, 1, 2, 0 };
+    public string[] bossNameList = new string[] { "TSUBASA", "ANJU", "ERENA" };
 
 
     private void Awake()
@@ -64,7 +65,13 @@ public class GManager : MonoBehaviour
         Application.targetFrameRate = 60;
     }
 
-
+    void Update()
+    {
+        if (score > 9999999)
+        {
+            score = 20100630;
+        }
+    }
     //ステージ初期化チェック。未初期化なら真を返す
     /*
     public bool InitializeCheck()

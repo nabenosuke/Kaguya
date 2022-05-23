@@ -23,4 +23,22 @@ public class DamageObject : MonoBehaviour
             damage.Damage(attack);
         }
     }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            var damage = collision.gameObject.GetComponent<IDamage>();
+            damage.Damage(attack);
+            isHit = true;
+        }
+    }
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            var damage = collision.gameObject.GetComponent<IDamage>();
+            damage.Damage(attack);
+        }
+    }
 }
