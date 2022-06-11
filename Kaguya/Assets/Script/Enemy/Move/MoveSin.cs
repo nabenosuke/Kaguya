@@ -4,63 +4,79 @@ using UnityEngine;
 
 public class MoveSin : MonoBehaviour, IEnemyMove
 {
-  //public GroundCheck ground;
-  public float speed = 3;
-  public float wide = 5;
-  public float period = 2;
-  [Header("画面外でも行動する")] public bool nonVisibleAct;
-  //public bool isGravity;
+    //public GroundCheck ground;
+    public float speed = 3;
+    public float wide = 5;
+    public float period = 2;
+    [Header("画面外でも行動する")] public bool nonVisibleAct;
+    //public bool isGravity;
 
-  private Vector2 velocity = Vector2.zero;
-  private Rigidbody2D rb = null;
-  private SpriteRenderer sr = null;
-  private float ySpeed;
-  private float height;
-  private float moveTime = 0;
-  private int rightNum = 1;
-  //private bool isGround;
-  // Start is called before the first frame update
-  void Start()
-  {
-    rb = GetComponent<Rigidbody2D>();
-    sr = GetComponent<SpriteRenderer>();
-    height = transform.position.y;
+    private Vector2 velocity = Vector2.zero;
+    private Rigidbody2D rb = null;
+    private SpriteRenderer sr = null;
+    private float ySpeed;
+    private float height;
+    private float moveTime = 0;
+    private float visTime = 5f;
+    private float visTimer = 10f;
+    private int rightNum = 1;
+    //private bool isGround;
+    // Start is called before the first frame update
+    void Start()
+    {
+        rb = GetComponent<Rigidbody2D>();
+        sr = GetComponent<SpriteRenderer>();
+        height = transform.position.y;
 
-    if (GetComponent<Enemy>().isRight)
-    {
-      rightNum = 1;
+        if (GetComponent<Enemy>().isRight)
+        {
+            rightNum = 1;
+        }
+        else
+        {
+            rightNum = -1;
+        }
     }
-    else
-    {
-      rightNum = -1;
-    }
-  }
 
-  // Update is called once per frame
-  void Update()
-  {
-  }
+    // Update is called once per frame
+    void Update()
+    {
+    }
 
-  void FixedUpdate()
-  {
-    if (sr.isVisible || nonVisibleAct)
+    void FixedUpdate()
     {
-      rb.velocity = new Vector2(speed * rightNum, GetYSpeed());
+        if (sr.isVisible)
+        {
+            visTimer = 0f;
+        }
+        else
+        {
+            if (visTimer < visTime)
+            {
+                visTimer += Time.fixedDeltaTime;
+            }
+        }
+
+
+        if (visTimer < visTime || nonVisibleAct)
+        {
+            rb.velocity = new Vector2(speed * rightNum, GetYSpeed());
+        }
+        else
+        {
+            rb.Sleep();
+        }
+
     }
-    else
+    private float GetYSpeed()
     {
-      rb.Sleep();
+        moveTime += Time.fixedDeltaTime;
+        ySpeed = wide * 2 * Mathf.PI / period * Mathf.Cos(moveTime * 2 * Mathf.PI / period);
+        return ySpeed;
     }
-  }
-  private float GetYSpeed()
-  {
-    moveTime += Time.fixedDeltaTime;
-    ySpeed = wide * 2 * Mathf.PI / period * Mathf.Cos(moveTime * 2 * Mathf.PI / period);
-    return ySpeed;
-  }
-  public void Turn()
-  {
-    transform.localScale = new Vector3(-transform.localScale.x, 1, 1);
-    rightNum = -1 * rightNum;
-  }
+    public void Turn()
+    {
+        transform.localScale = new Vector3(-transform.localScale.x, 1, 1);
+        rightNum = -1 * rightNum;
+    }
 }

@@ -72,8 +72,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 292295477
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 747d9ba4c129843408ce46fda95cf81c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -135,7 +135,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47be3a185daf6d843bbe7453908aba59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  explosion: {fileID: 0}
   speed: 10
   height: 20
   left1right_1: 1
@@ -159,6 +158,7 @@ MonoBehaviour:
   isIgnoreGround: 0
   attackScale: 1
   scale: 1
+  ignoreGroundTime: 0.0000001
   se: {fileID: 8300000, guid: 13b979e9c80e5b24f88b993b9632d973, type: 3}
 --- !u!1001 &7922101062144838139
 PrefabInstance:
@@ -220,6 +220,16 @@ PrefabInstance:
     - target: {fileID: 7780377241029738460, guid: 7a68833ddff61d74aad1045dcb1f2da8,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7780377241029738461, guid: 7a68833ddff61d74aad1045dcb1f2da8,
+        type: 3}
+      propertyPath: m_SortingLayer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7780377241029738461, guid: 7a68833ddff61d74aad1045dcb1f2da8,
+        type: 3}
+      propertyPath: m_SortingLayerID
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7780377241029738463, guid: 7a68833ddff61d74aad1045dcb1f2da8,

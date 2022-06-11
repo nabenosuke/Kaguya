@@ -3,7 +3,11 @@ guid: dc2dd5c53b9edc6488a8cdd35197f0ba
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - hitSE: {fileID: 8300000, guid: b31f028734b25f64f882e399dc794d39, type: 3}
+  - deathSE: {fileID: 8300000, guid: 7da2c4cba41f60f4b937075fad8b8f3e, type: 3}
+  - deathImage: {instanceID: 0}
+  - hpGauge: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

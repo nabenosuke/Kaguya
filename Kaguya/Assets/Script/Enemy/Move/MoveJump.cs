@@ -9,6 +9,7 @@ public class MoveJump : MonoBehaviour, IEnemyMoveOption
     [SerializeField] private float jumpInterval = 4f;
     private SpriteRenderer sr = null;
     private float jumpTimer = 0f;
+    private bool wasVisible = false;
     private bool canJump = false;
 
     void Start()
@@ -17,8 +18,12 @@ public class MoveJump : MonoBehaviour, IEnemyMoveOption
     }
     void Update()
     {
-        if (sr.isVisible)
+        if (sr.isVisible || wasVisible)
         {
+            if (!wasVisible)
+            {
+                wasVisible = true;
+            }
             jumpTimer += Time.deltaTime;
             if (groundCheck.IsGround())
             {

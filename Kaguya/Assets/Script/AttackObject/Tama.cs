@@ -23,6 +23,7 @@ public class Tama : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+
         /*落下し始めるまで地面貫通
         if (!isFall)
         {

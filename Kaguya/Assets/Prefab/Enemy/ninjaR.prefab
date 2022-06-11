@@ -354,6 +354,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: syuriken_Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 362071813041158720, guid: 6474767c464f10d49bcc2e11e5a515c7,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 362071813041158724, guid: 6474767c464f10d49bcc2e11e5a515c7,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 0.026336193
+      objectReference: {fileID: 0}
+    - target: {fileID: 362071813041158724, guid: 6474767c464f10d49bcc2e11e5a515c7,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 362071813041158724, guid: 6474767c464f10d49bcc2e11e5a515c7,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 362071813041158725, guid: 6474767c464f10d49bcc2e11e5a515c7,
         type: 3}
       propertyPath: m_RootOrder

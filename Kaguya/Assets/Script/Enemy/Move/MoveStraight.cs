@@ -15,8 +15,10 @@ public class MoveStraight : MonoBehaviour, IEnemyMove
     private SpriteRenderer sr = null;
     private float gravity;
     private float fallSpeed;
+    private float visTime = 5f;
+    private float visTimer = 10f;
     private int rightNum = 1;
-    private bool isGround;
+    //private bool isGround;
     // Start is called before the first frame update
     void Start()
     {
@@ -45,9 +47,20 @@ public class MoveStraight : MonoBehaviour, IEnemyMove
 
     void FixedUpdate()
     {
-        if (sr.isVisible || nonVisibleAct)
+        if (sr.isVisible)
         {
+            visTimer = 0f;
+        }
+        else
+        {
+            if (visTimer < visTime)
+            {
+                visTimer += Time.fixedDeltaTime;
+            }
+        }
 
+        if (visTimer < visTime || nonVisibleAct)
+        {
             rb.velocity = new Vector2(speed * rightNum, GetYSpeed());
             if (iEnemyMoveOption != null)
             {

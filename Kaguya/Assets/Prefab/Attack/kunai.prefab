@@ -72,8 +72,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 292295477
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 0df8a0260911f9045b91dfee3833d0d9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -101,7 +101,11 @@ MonoBehaviour:
   destroyTime: 0.3
   attack: 1
   attackInterval: 0.3
-  isPenetration: 0
+  attackEffect: {fileID: 0}
+  isIgnoreEnemy: 0
+  isIgnoreGround: 0
+  attackScale: 1
+  scale: 1
   se: {fileID: 8300000, guid: 732ff68218eeac544ae771a2bffb5040, type: 3}
 --- !u!50 &827336524856801669
 Rigidbody2D:

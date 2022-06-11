@@ -51,7 +51,7 @@ GameObject:
   - component: {fileID: 79214332}
   - component: {fileID: 79214331}
   m_Layer: 0
-  m_Name: honoka (2)
+  m_Name: umi
   m_TagString: Character
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -131,7 +131,7 @@ Animator:
   m_GameObject: {fileID: 79214329}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 0c85f24b354a4c143809e47d17f3af1d, type: 2}
+  m_Controller: {fileID: 9100000, guid: 08d497c7f269929418f3f7983168aed4, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -151,8 +151,9 @@ GameObject:
   - component: {fileID: 230260337}
   - component: {fileID: 230260339}
   - component: {fileID: 230260338}
+  - component: {fileID: 4151138472273189754}
   m_Layer: 0
-  m_Name: honoka (5)
+  m_Name: maki
   m_TagString: Character
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -232,7 +233,7 @@ Animator:
   m_GameObject: {fileID: 230260336}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 0c85f24b354a4c143809e47d17f3af1d, type: 2}
+  m_Controller: {fileID: 9100000, guid: ffdf9c372c8e2804ea813ea37b55b391, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -241,6 +242,23 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &4151138472273189754
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 230260336}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 489a2ab9f0fee9f408e67c26de3e31f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  blinkPeriod: 2
+  colorEdge: 0.6
+  red: 1
+  blue: 0
+  green: 0
 --- !u!1 &233256668
 GameObject:
   m_ObjectHideFlags: 0
@@ -354,7 +372,7 @@ GameObject:
   - component: {fileID: 322166898}
   - component: {fileID: 322166897}
   m_Layer: 0
-  m_Name: honoka (7)
+  m_Name: eli
   m_TagString: Character
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1460,6 +1478,7 @@ MonoBehaviour:
   attackInterval: 0
   jumpTime: 0.2
   isGetUp: 0
+  blinkColorM: {fileID: 4151138472273189754}
   magicSE: {fileID: 8300000, guid: e551a7e2c1f00744b8a93d8016644716, type: 3}
 --- !u!50 &8275704706581979969
 Rigidbody2D:
@@ -1480,7 +1499,7 @@ Rigidbody2D:
   m_Material: {fileID: 6200000, guid: 6cf3090953ec0c3439f6f66202adb6b0, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!61 &6450542867658676377
 BoxCollider2D:
@@ -1553,7 +1572,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.65}
+  m_Offset: {x: 0, y: -0.63}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -1642,6 +1661,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6241821613473075036, guid: a373b464082264645ba16d39cded8108,
+        type: 3}
+      propertyPath: m_SortingLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6241821613473075037, guid: a373b464082264645ba16d39cded8108,
         type: 3}
       propertyPath: m_Name
@@ -1728,6 +1752,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3872702850891707334, guid: 540288e4cf738ab4f8b47fcc2acb9230,
+        type: 3}
+      propertyPath: m_SortingLayer
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 540288e4cf738ab4f8b47fcc2acb9230, type: 3}
 --- !u!4 &6323560873786266650 stripped
@@ -1749,6 +1778,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8275704706581979981}
     m_Modifications:
+    - target: {fileID: 827336524856801672, guid: e861c0a64ce097745aac74a1517f55ba,
+        type: 3}
+      propertyPath: m_SortingLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 827336524856801673, guid: e861c0a64ce097745aac74a1517f55ba,
         type: 3}
       propertyPath: m_RootOrder

@@ -4,11 +4,18 @@ using UnityEngine;
 
 public class CheckPoint : MonoBehaviour, IItem
 {
-    [Header("コンティニュー番号")] [SerializeField] int checkPointNum;
+    [SerializeField] private GameObject flagW;
+    [SerializeField] private GameObject flag;
+    [SerializeField] private AudioClip se;
+    [Header("コンティニュー番号")] [SerializeField]private  int checkPointNum;
+
     // Start is called before the first frame update
     void Start()
     {
-
+        if(GManager.instance.continuePointNum == checkPointNum){
+            flagW.SetActive(false);
+            flag.SetActive(true);
+        }
     }
 
     // Update is called once per frame
@@ -22,7 +29,10 @@ public class CheckPoint : MonoBehaviour, IItem
         if (GManager.instance.continuePointNum < checkPointNum)
         {
             GManager.instance.continuePointNum = checkPointNum;
+            flagW.SetActive(false);
+            flag.SetActive(true);
+            GManager.instance.PlaySE(se);
         }
-        Destroy(this.gameObject);
+        //Destroy(this.gameObject);
     }
 }

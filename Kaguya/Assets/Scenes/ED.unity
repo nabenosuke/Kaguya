@@ -655,7 +655,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: THANK YOU FOR PLAYNG!
+  m_Text: THANK YOU FOR PLAYING!
 --- !u!222 &651577916
 CanvasRenderer:
   m_ObjectHideFlags: 0

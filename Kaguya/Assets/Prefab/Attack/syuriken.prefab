@@ -71,8 +71,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 292295477
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: a102c77d858104e4380133993f962989, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -138,6 +138,8 @@ MonoBehaviour:
   attackEffect: {fileID: 0}
   isIgnoreEnemy: 1
   isIgnoreGround: 0
+  attackScale: 1
+  scale: 1
   se: {fileID: 8300000, guid: 732ff68218eeac544ae771a2bffb5040, type: 3}
 --- !u!70 &3223458072753931360
 CapsuleCollider2D:

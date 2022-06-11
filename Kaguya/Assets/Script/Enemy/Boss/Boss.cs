@@ -121,6 +121,7 @@ public class Boss : MonoBehaviour
         {
             isAttck = true;
             iBoss.SetAttack(bossActNum);
+            anim.SetTrigger("Attack");
         }
         //待機ムーブ
         rb.velocity = iBoss.StandBy();
@@ -134,6 +135,7 @@ public class Boss : MonoBehaviour
 
     private void StartBattle()
     {
+        anim.SetTrigger("Start");
         enemy.isArmor = false;
         nowState = BossState.Battle;
     }

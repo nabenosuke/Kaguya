@@ -41,8 +41,11 @@ TagManager:
   - 
   - 
   m_SortingLayers:
-  - name: background
+  - name: backwall
     uniqueID: 3895329167
+    locked: 0
+  - name: backnature
+    uniqueID: 2028431395
     locked: 0
   - name: Ground
     uniqueID: 310256095
@@ -55,4 +58,7 @@ TagManager:
     locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Attack
+    uniqueID: 292295477
     locked: 0

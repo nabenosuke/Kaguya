@@ -56,8 +56,8 @@ public class Player : MonoBehaviour, IDamage
 
 
     //ほのか
-    private float attackScale = 1.5f;
-    private int attackDamageScale = 2;
+    private float attackScaleH = 1.5f;
+    private int attackDamageScaleH = 2;
     private int criticalRate = 5;
 
     //ことり
@@ -67,6 +67,11 @@ public class Player : MonoBehaviour, IDamage
     private float hideTimer = 0f;
     private float hideTime = 5f;
     private bool isHide = false;
+    //まき
+    private float attackScaleM = 1.5f;
+    private int attackDamageScaleM = 2;
+    private int attackHPM = 1;
+    [SerializeField]private BlinkColor blinkColorM;
 
     //にこ
     private float spinSpeed = 2.0f;
@@ -79,6 +84,11 @@ public class Player : MonoBehaviour, IDamage
     [Header("希の無敵音")][SerializeField] private AudioClip magicSE = null;
     private int magicRate = 3;
     //private bool isArmor = false;
+
+    //えり
+    private float ariseTimer = 0f;
+    private float ariseTime = 3f;
+    private bool isArise = false;
     #endregion
     // Start is called before the first frame update
     void Start()
@@ -174,6 +184,24 @@ public class Player : MonoBehaviour, IDamage
                         }
                     }
                 }
+
+                //えり
+                if (characterID == 9)
+                {
+                        GManager.instance.PlaySE(subActSE);
+                        if (!isArise)
+                        {
+                            anim.SetTrigger("to_a");
+                            isArmor = true;
+                            isArise = true;
+                        }
+                        else
+                        {
+                            anim.SetTrigger("default");
+                            isArmor = false;
+                            isArise = false;
+                        }
+                }
             }
 
             //被弾時点滅
@@ -232,6 +260,7 @@ public class Player : MonoBehaviour, IDamage
 
 
         //タイマー
+        //はなよ
         if (characterID == 5)
         {
             if (isHide)
@@ -256,6 +285,46 @@ public class Player : MonoBehaviour, IDamage
                 }
             }
             subGauge.value = 1 - hideTimer / hideTime;
+        }
+        //えり
+        if (characterID == 9)
+        {
+            if (isArise)
+            {
+                ariseTimer += Time.deltaTime;
+                if (ariseTimer > ariseTime)
+                {
+                    anim.SetTrigger("default");
+                    isArmor = false;
+                    isArise = false;
+                }
+            }
+            else if (!isArise)
+            {
+                if (ariseTimer < 0)
+                {
+                    ariseTimer = 0f;
+                }
+                else if (ariseTimer > 0f)
+                {
+                    ariseTimer -= Time.deltaTime;
+                }
+            }
+            subGauge.value = 1 - ariseTimer / ariseTime;
+        }
+
+        //まき点滅
+        if(characterID==6){
+        if(GManager.instance.playerHP<=attackHPM){
+            if(!blinkColorM.enabled){
+                blinkColorM.enabled=true;
+            }
+        }
+        else{
+            if(blinkColorM.enabled){
+                blinkColorM.enabled=false;
+            }
+        }
         }
     }
     void FixedUpdate()
@@ -456,6 +525,9 @@ public class Player : MonoBehaviour, IDamage
         {
             anim.SetBool("spin", isSpin);
         }
+        if(characterID==9){
+            anim.SetBool("isArise", isArise);
+        }
     }
 
     public void Attack()
@@ -471,7 +543,13 @@ public class Player : MonoBehaviour, IDamage
             //クリティカル攻撃
             if (number < criticalRate)
             {
-                attackObject.SetScale(attackScale, attackDamageScale);
+                attackObject.SetScale(attackScaleH, attackDamageScaleH);
+            }
+        }
+        //まき
+        if(characterID==6){
+            if(GManager.instance.playerHP<=attackHPM){
+                attackObject.SetScale(attackScaleM, attackDamageScaleM);
             }
         }
         //g.transform.localScale = attackObj.transform.localScale;
@@ -550,6 +628,7 @@ public class Player : MonoBehaviour, IDamage
         runAnimSpeed = defaultRunAnimSpeed;
         subGauge.gameObject.SetActive(false);
         attackObj = attackObjs[GManager.instance.weponIDList[characterID - 1]];
+        blinkColorM.enabled=false;
 
         switch (charaID)
         {
@@ -570,6 +649,10 @@ public class Player : MonoBehaviour, IDamage
                 break;
             //にこ 手裏剣
             case 7:
+                break;
+            //えり
+            case 9:
+                subGauge.gameObject.SetActive(true);
                 break;
             default:
                 break;

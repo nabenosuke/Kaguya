@@ -11,8 +11,12 @@ public class AttackObject : MonoBehaviour
     [Header("攻撃エフェクト")][SerializeField] private GameObject attackEffect;
     [SerializeField] public bool isIgnoreEnemy;
     [SerializeField] public bool isIgnoreGround;
+    private bool isHit;
     [SerializeField] private int attackScale = 1;
     [SerializeField] private float scale = 1;
+    [Header("発生後地面を無視する時間")][SerializeField]private float ignoreGroundTime=0f;
+    private float timer=0f;
+
 
 
     [SerializeField] private AudioClip se;
@@ -25,17 +29,26 @@ public class AttackObject : MonoBehaviour
         Invoke("DestroyThis", destroyTime);
     }
 
+    private void Update() {
+        if(timer<ignoreGroundTime){
+            timer+=Time.deltaTime;
+        }
+    }
+
     // Update is called once per frame
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag == "Ground")
         {
-            if (!isIgnoreGround)
+            if (timer>=ignoreGroundTime && !isIgnoreGround)
             {
                 if (attackEffect != null)
                 {
+                    if(!isHit){
                     generateEffect();
+                    isHit=true;
+                    }
                 }
                 Destroy(this.gameObject);
             }
@@ -51,11 +64,32 @@ public class AttackObject : MonoBehaviour
                 {
                     if (attackEffect != null)
                     {
+                        if(!isHit){
                         generateEffect();
+                        isHit=true;
+                        }
                     }
                     Destroy(this.gameObject);
                 }
             }
+        }
+    }
+
+    private void OnTriggerStay2D(Collider2D collision) {
+        if (collision.tag == "Ground")
+        {
+            if (timer>=ignoreGroundTime && !isIgnoreGround)
+            {
+                if (attackEffect != null)
+                {
+                    if(!isHit){
+                    generateEffect();
+                    isHit=true;
+                    }
+                }
+                Destroy(this.gameObject);
+            }
+
         }
     }
 

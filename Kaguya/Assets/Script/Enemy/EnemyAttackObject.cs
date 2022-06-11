@@ -6,7 +6,7 @@ public class EnemyAttackObject : MonoBehaviour
 {
     [Header("スピード")] public float speed = 3.0f;
     [Header("最大飛距離")] public float maxDistance = 100f;
-    [Header("向き")] public float left1right_1 = 1;
+    [Header("向き")] private float left_1right1 = -1;
     [Header("攻撃力")] public int attack = 1;
 
 
@@ -25,7 +25,13 @@ public class EnemyAttackObject : MonoBehaviour
         defaultPos = transform.position;
         if (transform.localScale.x < 0)
         {
-            left1right_1 = -1;
+            left_1right1 = 1;
+            GetComponent<Rigidbody2D>().velocity = new Vector2(Mathf.Cos(transform.localEulerAngles.z * Mathf.Deg2Rad) * left_1right1, -Mathf.Sin(transform.localEulerAngles.z * Mathf.Deg2Rad)) * speed;
+            transform.rotation = Quaternion.Euler(new Vector3(0, 0, -transform.localEulerAngles.z));
+        }
+        else
+        {
+            GetComponent<Rigidbody2D>().velocity = new Vector2(Mathf.Cos(transform.localEulerAngles.z * Mathf.Deg2Rad) * left_1right1, -Mathf.Sin(transform.localEulerAngles.z * Mathf.Deg2Rad)) * speed;
         }
     }
 
@@ -38,10 +44,12 @@ public class EnemyAttackObject : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
+        /*
         else
         {
             rb.MovePosition(transform.position += Vector3.left * speed * Time.deltaTime * left1right_1);
         }
+        */
     }
 
     private void OnTriggerEnter2D(Collider2D collider)
